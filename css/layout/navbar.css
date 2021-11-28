@@ -1,0 +1,144 @@
+#t-navbar {
+    width: 178px;
+    height: 100vh; /**/
+    background-color: #38393d;
+    color: #fff;
+}
+
+/* Logo */
+#t-nav-logo {
+    width: 130px;
+    height: 48px;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+}
+
+.t-menu-logo {
+    background: url('../../content/img/Sprites.64af8f61.svg') no-repeat -424px -86px;
+	width: 24px;
+	height: 24px;
+    display: block;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.t-img-icon {
+    height: 32px;
+    display: block;
+    cursor: pointer;
+}
+
+
+/* Nav list */
+#t-nav-list {
+    padding-top: 14px;
+}
+
+#t-nav-list .t-list-item  {
+    display: flex;
+    align-items: center;
+    height: 42px;
+    padding: 0 14px 0 8px;
+    border-left: 6px solid transparent;
+}
+
+#t-nav-list .t-list-item:hover {
+    background-color: #616264;
+    cursor: pointer;
+}
+
+#t-nav-list .t-icon-size {
+    width: 24px;
+	height: 24px;
+}
+
+/*  */
+
+.t-overview-icon {
+    background: url('../../content/img/Sprites.64af8f61.svg') no-repeat -33px -1630px;
+}
+
+.t-cash-icon {
+    background: url('../../content/img/Sprites.64af8f61.svg') no-repeat -78px -1631px;
+}
+
+.t-deposit-icon {
+    background: url('../../content/img/Sprites.64af8f61.svg') no-repeat -121px -1633px;
+}
+
+.t-buy-icon {
+    background: url('../../content/img/Sprites.64af8f61.svg') no-repeat -165px -1632px;
+}
+
+.t-sell-icon {
+    background: url('../../content/img/Sprites.64af8f61.svg') no-repeat -206px -1631px;
+}
+
+.t-bill-icon {
+    background: url('../../content/img/Sprites.64af8f61.svg') no-repeat -254px -1632px;
+}
+
+.t-warehouse-icon {
+    background: url('../../content/img/Sprites.64af8f61.svg') no-repeat -294px -1632px;
+}
+
+.t-tool-icon {
+    background: url('../../content/img/Sprites.64af8f61.svg') no-repeat -339px -1633px;
+}
+
+.t-asset-icon {
+    background: url('../../content/img/Sprites.64af8f61.svg') no-repeat -382px -1632px;
+}
+
+.t-tax-icon {
+    background: url('../../content/img/Sprites.64af8f61.svg') no-repeat -427px -1634px;
+}
+
+.t-price-icon {
+    background: url('../../content/img/Sprites.64af8f61.svg') no-repeat -471px -1633px;
+}
+
+.t-total-icon {
+    background: url('../../content/img/Sprites.64af8f61.svg') no-repeat -514px -1632px;
+}
+
+.t-budget-icon {
+    background: url('../../content/img/Sprites.64af8f61.svg') no-repeat -382px -1664px;
+}
+
+.t-report-icon {
+    background: url('../../content/img/Sprites.64af8f61.svg') no-repeat -552px -1636px;
+}
+
+.t-analysis-icon {
+    background: url('../../content/img/Sprites.64af8f61.svg') no-repeat -207px -1667px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,107 @@
+#t-header {
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.t-header-left,
+.t-header-right {
+    display: flex;
+}
+
+/* Left header */
+.t-bar-icon {
+    background: url('../../content/img/Sprites.64af8f61.svg') no-repeat -843px -30px;
+    width: 24px;
+    height: 24px;
+    margin: 0 10px;
+}
+
+.t-bar-icon:hover,
+.t-company-down:hover,
+.t-company-name:hover {
+    cursor: pointer;
+}
+
+.t-company {
+    display: flex;
+}
+
+.t-company-name {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 14px;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.t-company-down {
+    background: url('../../content/img/Sprites.64af8f61.svg') no-repeat -80px -360px;
+    transform: rotate(90deg);
+    width: 14px;
+    height: 14px;
+    margin: 0 10px;
+    margin-top: 4px;
+}
+
+/* Right header */
+.t-user {
+    display: flex;
+    align-items: center;
+}
+
+.t-bell-icon:hover,
+.t-user-name:hover,
+.t-user-avatar:hover,
+.t-user-extends:hover {
+    cursor: pointer;
+}
+
+.t-user .t-bell-icon {
+    background: url('../../content/img/Sprites.64af8f61.svg') no-repeat -257px -32px;
+    width: 24px;
+    height: 24px;
+    margin-right: 12px;
+}
+
+.t-user .t-user-avatar {
+    width: 24px;
+    height: 24px;
+    background: url('../../content/img/Sprites.64af8f61.svg') no-repeat -608px -1140px;
+    /* background-size: 32px 32px; */
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.t-user-avatar svg {
+    /* width: 14px;
+    height: 14px; */
+}
+
+.t-user .t-user-name {
+    font-weight: bold;
+    font-size: 14px;
+    margin-right: 8px;
+}
+
+.t-user .t-user-extends {
+    background: url('../../content/img/Sprites.64af8f61.svg') no-repeat -948px -366px;
+    width: 14px;
+    height: 14px;
+    margin-top: 8px;
+    margin-right: 16px;
+    padding: 4px;
+}
+
+
+
+
+
+
+
+
+
+
+

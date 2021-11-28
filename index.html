@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Page</title>
+    <!-- Library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Common Css -->
+    <link rel="stylesheet" href="./css/main.css">
+
+    <!-- Private Css -->
+
+</head>
+<body>
+    <!-- Container -->
+    <div id="t-container">
+
+        <!-- Left -->
+        <!-- Begin Navbar -->
+        <div id="t-navbar">
+            <!-- Logo -->
+            <div id="t-nav-logo">
+                <div class="t-logo-left">
+                    <a class="t-menu-logo" href="#"></a>
+                </div>
+                <div class="t-logo-right">
+                    <img class="t-img-icon" src="./content/img/Logo_Module_TiengViet_White.66947422.svg" alt="">
+                </div>
+            </div>
+            <!-- End logo -->
+
+            <!-- Nav list -->
+            <div id="t-nav-list">
+                <div class="t-list-item t-overview" title="Tổng quan">
+                    <div class="t-overview-icon t-mg-right-8 t-icon-size"></div>
+                    <div>Tổng quan</div>
+                </div>
+
+                <div class="t-list-item" title="Tiền mặt">
+                    <div class="t-cash-icon t-mg-right-8 t-icon-size"></div>
+                    <div>Tiền mặt</div>
+                </div>
+
+                <div class="t-list-item" title="Tiền gửi">
+                    <div class="t-deposit-icon t-mg-right-8 t-icon-size"></div>
+                    <div>Tiền gửi</div>
+                </div>
+
+                <div class="t-list-item" title="Mua hàng">
+                    <div class="t-buy-icon t-mg-right-8 t-icon-size"></div>
+                    <div>Mua hàng</div>
+                </div>
+
+                <div class="t-list-item" title="Bán hàng">
+                    <div class="t-sell-icon t-mg-right-8 t-icon-size"></div>
+                    <div>Bán hàng</div>
+                </div>
+
+                <div class="t-list-item" title="Quản lý hóa đơn">
+                    <div class="t-bill-icon t-mg-right-8 t-icon-size"></div>
+                    <div>Quản lý hóa đơn</div>
+                </div>
+
+                <div class="t-list-item" title="Kho">
+                    <div class="t-warehouse-icon t-mg-right-8 t-icon-size"></div>
+                    <div>Kho</div>
+                </div>
+
+                <div class="t-list-item" title="Công cụ dụng cụ">
+                    <div class="t-tool-icon t-mg-right-8 t-icon-size"></div>
+                    <div>Công cụ dụng cụ</div>
+                </div>
+
+                <div class="t-list-item" title="Tài sản cố định">
+                    <div class="t-asset-icon t-mg-right-8 t-icon-size"></div>
+                    <div>Tài sản cố định</div>
+                </div>
+
+                <div class="t-list-item" title="Thuế">
+                    <div class="t-tax-icon t-mg-right-8 t-icon-size"></div>
+                    <div>Thuế</div>
+                </div>
+
+                <div class="t-list-item" title="Giá thành">
+                    <div class="t-price-icon t-mg-right-8 t-icon-size"></div>
+                    <div>Giá thành</div>
+                </div>
+
+                <div class="t-list-item" title="Tổng hợp">
+                    <div class="t-total-icon t-mg-right-8 t-icon-size"></div>
+                    <div>Tổng hợp</div>
+                </div>
+
+                <div class="t-list-item" title="Ngân sách">
+                    <div class="t-budget-icon t-mg-right-8 t-icon-size"></div>
+                    <div>Ngân sách</div>
+                </div>
+
+                <div class="t-list-item" title="Báo cáo">
+                    <div class="t-report-icon t-mg-right-8 t-icon-size"></div>
+                    <div>Báo cáo</div>
+                </div>
+
+                <div class="t-list-item" title="Phân tích tài chính">
+                    <div class="t-analysis-icon t-mg-right-8 t-icon-size"></div>
+                    <div>Phân tích tài chính</div>
+                </div>
+
+
+            </div>
+            <!-- End nav list -->
+
+        </div>
+        <!-- End Navbar -->
+
+
+        <!-- Right -->
+        <div id="t-container-right">
+            <!-- Begin Header -->
+            <div id="t-header">
+                <!-- Left -->
+                <div class="t-header-left">
+                    <div class="t-bar-icon"></div>
+                    <div class="t-company">
+                        <span class="t-company-name" title="CÔNG TY TNHH SẢN XUẤT - THƯƠNG MẠI - DỊCH VỤ QUI PHÚC">công ty tnhh sản xuất - thương mại - dịch vụ qui phúc</span>
+                        <div class="t-company-down"></div>
+                    </div>
+                </div>
+
+                <!-- Right -->
+                <div class="t-header-right">
+                    <!-- Begin user -->
+                    <div class="t-user">
+                        <div class="t-bell-icon"></div>
+                        <div class="t-user-avatar">
+                            <!-- <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="user" class="svg-inline--fa fa-user fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z"></path>
+                            </svg> -->
+                        </div>
+                        <div class="t-user-name">Nguyễn Phi Tân</div>
+                        <div class="t-user-extends"></div>
+                    </div>
+                    <!-- End user -->
+                </div>
+            </div>
+            <!-- End Header -->
+
+            <!-- Begin Content -->
+            <div id="t-content">
+                <!-- Begin top content -->
+                <div id="t-top-content">
+                    <!-- Title -->
+                    <div class="t-top-title">
+                        <h2 class="t-content-title">Nhân viên</h2>
+                        <div class="t-btn-add">Thêm mới nhân viên</div>
+                    </div>
+
+                    <!-- Filter -->
+                    <div class="t-top-filter">
+                        <div class="t-input-filter">
+                            <input id="t-input-text" type="text" placeholder="Tìm kiếm theo mã, tên nhân viên">
+                            <div class="t-icon-search"></div>
+                        </div>
+                        <div class="t-load-btn"></div>
+                    </div>
+                </div>
+                <!-- End top content -->
+
+                <!-- Begin table content -->
+                <div id="t-table-content">
+                    <!-- Begin table -->
+                    <table id="t-table">
+                        <!-- thead -->
+                        <thead>
+                            <tr class="t-row-table">
+                                <th class="t-checkbox t-col-border t-padding-10"> <input type="checkbox" name="" id=""> </th>
+                                <th class="t-employee-code t-col-border t-padding-10">MÃ NHÂN VIÊN</th>
+                                <th class="t-employee-name t-col-border t-padding-10">TÊN NHÂN VIÊN</th>
+                                <th class="t-employee-gender t-col-border t-padding-10">GIỚI TÍNH</th>
+                                <th class="t-employee-date t-col-border t-padding-10">NGÀY SINH</th>
+                                <th class="t-employee-cmnd t-col-border t-padding-10">SỐ CMND</th>
+                                <th class="t-employee-position t-col-border t-padding-10">CHỨC DANH</th>
+                                <th class="t-employee-unit t-col-border t-padding-10">TÊN ĐƠN VỊ</th>
+                                <th class="t-employee-account-number t-col-border t-padding-10">SỐ TÀI KHOẢN</th>
+                                <th class="t-employee-bank t-col-border t-padding-10">TÊN NGÂN HÀNG</th>
+                                <th class="t-employee-branch t-col-border t-padding-10">CHI NHÁNH TK NGÂN HÀNG</th>
+                                <th class="t-employee-function t-border-bottom t-padding-10">CHỨC NĂNG</th>
+                            </tr>
+                        </thead>
+                        <!-- End thead -->
+
+
+                        <!-- tbody -->
+                        <tbody>
+                            <tr class="t-row-table">
+                                <td class="t-checkbox t-col-border t-padding-10"> <input type="checkbox" name="" id=""> </td>
+                                <td class="t-employee-code t-col-border t-padding-10">00012</td>
+                                <td class="t-employee-name t-col-border t-padding-10">Nguyễn Thạc Hương</td>
+                                <td class="t-employee-gender t-col-border t-padding-10 t-align-center">Nữ</td>
+                                <td class="t-employee-date t-col-border t-padding-10 t-align-center">12/08/2001</td>
+                                <td class="t-employee-cmnd t-col-border t-padding-10">026452495</td>
+                                <td class="t-employee-position t-col-border t-padding-10">Trưởng phòng</td>
+                                <td class="t-employee-unit t-col-border t-padding-10">Kiểm hàng kho</td>
+                                <td class="t-employee-account-number t-col-border t-padding-10">04264585221</td>
+                                <td class="t-employee-bank t-col-border t-padding-10">TP Bank</td>
+                                <td class="t-employee-branch t-col-border t-padding-10">Hà Nội</td>
+                                <td class="t-employee-function t-border-bottom t-padding-10 t-align-center">
+                                    <div class="t-function-btn">
+                                        <div class="t-function-name">Sửa</div>
+                                        <div class="t-function-extend">
+                                            <div class="t-function-box">
+                                                <div class="t-box-item">Nhân bản</div>
+                                                <div class="t-box-item t-function-remove">Xóa</div>
+                                                <div class="t-box-item">Ngừng sử dụng</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <!-- End tbody -->
+                    </table>
+                    <!-- End table -->
+
+                    <br><br><br><br><br><br><br><br><br><br>
+                    <!-- Content footer -->
+                    <div id="t-content-footer">
+                        <div class="t-total-record">Tổng số: <b>1</b> bản ghi</div>
+                        <div class="t-record-number">
+                            <select name="" id="t-combobox-number">
+                                <option value="10">10 bản ghi trên 1 trang</option>
+                                <option value="20">20 bản ghi trên 1 trang</option>
+                                <option value="30">30 bản ghi trên 1 trang</option>
+                                <option value="50">50 bản ghi trên 1 trang</option>
+                                <option value="100">100 bản ghi trên 1 trang</option>
+                            </select>
+
+                            <div class="t-list-page">
+                                <div class="t-page-number t-pre-page">Trước</div>
+                                <div class="t-page-number">1</div>
+                                <div class="t-page-number">2</div>
+                                <div class="t-page-number">3</div>
+                                <div class="t-page-number">...</div>
+                                <div class="t-page-number">89</div>
+                                <div class="t-page-number t-next-page">Sau</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End content footer -->
+
+                </div>
+                <!-- End table content -->
+            </div>
+            <!-- End Content -->
+        </div>
+
+
+        <!-- Begin popup -->
+        <div id="t-overlay">
+            <div id="t-popup-area">
+                <div id="t-popup">
+                    <!-- Close popup -->
+                    <div class="t-popup-close">
+                        <div class="t-help-icon" title="Giúp(F1)"></div>
+                        <div class="t-close-icon" title="Đóng(ESC)"></div>
+                    </div>
+                    <!-- End close popup -->
+    
+                    <!-- Popup header -->
+                    <div class="t-popup-header">
+                        <h1 class="t-popup-title">Thông tin nhân viên</h1>
+                        <div class="t-popup-select">
+                            <input class="t-popup-select-item" type="checkbox" name="">
+                            <div class="t-select-alias">Là khách hàng</div>
+                        </div>
+                        <div class="t-popup-select">
+                            <input class="t-popup-select-item" type="checkbox" name="">
+                            <div class="t-select-alias">Là nhà cung cấp</div>
+                        </div>
+                    </div>
+                    <!-- End popup header -->
+    
+                    <!-- Popup content -->
+                    <div class="t-popup-content">
+                        <!-- Infor -->
+                        <div class="t-popup-info t-mg-bottom-12">
+                            <!-- Left infor -->
+                            <div class="t-left-info t-mg-bottom-12">
+                                <div class="t-row t-flex t-mg-bottom-12">
+                                    <div class="t-code-info t-mg-right-6">
+                                        <div class="t-info-name">Mã <span class="t-color-red">*</span></div>
+                                        <input class="t-input t-input-info" type="text">
+                                    </div>
+                                    <div class="t-name-info">
+                                        <div class="t-info-name">Tên <span class="t-color-red">*</span></div>
+                                        <input class="t-input t-input-info" type="text">
+                                    </div>
+                                </div>
+                                <div class="t-row t-mg-bottom-12">
+                                    <div class="t-unit-info">
+                                        <div class="t-info-name">Đơn vị <span class="t-color-red">*</span></div>
+                                        <input class="t-input t-input-info t-w-100" type="text">
+                                    </div>
+                                </div>
+                                <div class="t-row t-mg-bottom-12">
+                                    <div class="t-position-info">
+                                        <div class="t-info-name">Chức danh </div>
+                                        <input class="t-input t-input-info t-w-100" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Right info -->
+                            <div class="t-right-info t-mg-bottom-12">
+                                <div class="t-row t-flex t-mg-bottom-12">
+                                    <div class="t-date-info">
+                                        <div class="t-info-name">Ngày sinh </div>
+                                        <input class="t-input t-input-info t-mg-right-16" type="date">
+                                    </div>
+                                    <div class="t-gender-info">
+                                        <div class="t-info-name">Giới tính </div>
+                                        <div class="t-select-gender">
+                                            <input class="t-input-radio t-mg-right-10" type="radio" name="gender" id="">
+                                            <div class="t-popup-gender-name t-mg-right-16">Nam</div>
+                                            <input class="t-input-radio t-mg-right-10" type="radio" name="gender" id="">
+                                            <div class="t-popup-gender-name t-mg-right-16">Nữ</div>
+                                            <input class="t-input-radio t-mg-right-10" type="radio" name="gender" id="">
+                                            <div class="t-popup-gender-name">Khác</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="t-row t-mg-bottom-12 t-flex">
+                                    <div class="t-id-info t-mg-right-6">
+                                        <div class="t-info-name">Số CMND</div>
+                                        <input class="t-input t-input-info" type="text">
+                                    </div>
+                                    <div class="t-id-date-info">
+                                        <div class="t-info-name">Ngày cấp</div>
+                                        <input class="t-input t-input-info" type="date">
+                                    </div>
+                                </div>
+                                <div class="t-row t-mg-bottom-12">
+                                    <div class="t-id-address-info">
+                                        <div class="t-info-name">Nơi cấp</div>
+                                        <input class="t-input t-input-info t-w-100" type="text">
+                                    </div>
+                                </div>
+                            </div>
+    
+                        </div>
+                        <!-- End infor -->
+    
+                        <!-- Contact -->
+                        <div class="t-popup-contact">
+                            <div class="t-row t-mg-bottom-12">
+                                <div class="t-address-info">
+                                    <div class="t-info-name">Địa chỉ</div>
+                                    <input class="t-input t-input-info t-w-100" type="text">
+                                </div>
+                            </div>
+    
+                            <div class="t-row t-mg-bottom-12 t-flex">
+                                <div class="t-address-info">
+                                    <div class="t-info-name">Điện thoại di động</div>
+                                    <input class="t-input t-input-info t-mg-right-6" type="text">
+                                </div>
+                                <div class="t-address-info">
+                                    <div class="t-info-name">Điện thoại cố định</div>
+                                    <input class="t-input t-input-info t-mg-right-6" type="text">
+                                </div>
+                                <div class="t-address-info">
+                                    <div class="t-info-name">Email</div>
+                                    <input class="t-input t-input-info t-203px" type="text">
+                                </div>
+                            </div>
+    
+                            <div class="t-row t-mg-bottom-12 t-flex">
+                                <div class="t-address-info">
+                                    <div class="t-info-name">Tài khoản ngân hàng</div>
+                                    <input class="t-input t-input-info t-mg-right-6" type="text">
+                                </div>
+                                <div class="t-address-info">
+                                    <div class="t-info-name">Tên ngân hàng</div>
+                                    <input class="t-input t-input-info t-mg-right-6" type="text">
+                                </div>
+                                <div class="t-address-info">
+                                    <div class="t-info-name">Chi nhánh</div>
+                                    <input class="t-input t-input-info t-203px" type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End contact -->
+    
+                    </div>
+                    <!-- End popup content -->
+    
+                    <!-- Popup footer -->
+                    <div class="t-popup-footer">
+                        <button class="t-popup-cancel t-btn t-bold">Hủy</button>
+                        <div class="t-save-btn">
+                            <button class="t-save-only t-btn t-bold t-mg-right-6">Cất</button>
+                            <button class="t-save-and-add t-btn t-bold">Cất và thêm</button>
+                        </div>
+                    </div>
+                    <!-- End popup footer -->
+                </div>
+            </div>
+        </div>
+        <!-- End popup -->
+
+        <!-- Begin dialog -->
+        <div id="t-dialog">
+            <div id="t-dialog-remove">
+                <div id="t-dialog-container">
+                    <!-- Top -->
+                    <div class="t-dialog-warning">
+                        <div class="t-div-extends">
+                            <div class="t-warning-icon"></div>
+                        </div>
+                        <div class="t-warning-title">Bạn có thực sự muốn xóa nhân viên < NGUYEN THAC HUONG > không?</div>
+                    </div>
+
+                    <!-- Bottom -->
+                    <div class="t-dialog-btn">
+                        <button class="t-dialog-cancel t-btn t-bold">Không</button>
+                        <button class="t-dialog-agree t-btn t-bold">Có</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End dialog -->
+
+    </div>
+    <!-- End Container -->
+
+
+
+
+
+    <!-- Library JS -->
+    <!-- Common JS -->
+    <!-- Private JS -->
+    <script src="./js/page/employee.js"></script>
+</body>
+</html>

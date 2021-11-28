@@ -1,0 +1,66 @@
+@import url('../css/common/common.css');
+@import url('../css/layout/container.css');
+@import url('../css/layout/navbar.css');
+@import url('../css/layout/header.css');
+@import url('../css/layout/content.css');
+@import url('../css/base/popup.css');
+@import url('../css/base/dialog.css');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: MISA Font;
+    font-size: 13px;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+/* Scroll */
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+
+/* Font */
+
+@font-face {
+    font-family: MISA Font;
+    src: url('../content/fonts/notosans-regular.2cb88a13.woff2');
+}
+
+@font-face {
+    font-family: MISA Font Bold;
+    src: url('../content/fonts/notosans-bold.3ede5aff.woff2');
+}
+
+@font-face {
+    font-family: MISA Font Italic;
+    src: url('../content/fonts/notosans-italic.1c1aaac9.woff2');
+}
+
+@font-face {
+    font-family: MISA Font Semibold;
+    src: url('../content/fonts/notosans-semibold.df3e6dc4.woff2');
+}
+
+
+
+

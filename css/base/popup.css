@@ -1,0 +1,149 @@
+#t-overlay {
+    display: none;
+}
+
+#t-popup-area {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#t-popup {
+    width: 900px;
+    height: 600px;
+    background: #fff;
+    border-radius: 4px;
+    position: relative;
+}
+
+/* Popup close */
+.t-popup-close {
+    width: 78px;
+    height: 72px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.t-help-icon {
+    background: url('../../content/img/Sprites.64af8f61.svg') no-repeat -89px -144px;
+    width: 24px;
+    height: 24px;
+    margin-right: 6px;
+    cursor: pointer;
+}
+
+.t-close-icon {
+    background: url('../../content/img/Sprites.64af8f61.svg') no-repeat -144px -144px;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+
+/* Popup header */
+.t-popup-header {
+    width: 882px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    padding: 20px 12px 20px 32px;
+}
+
+.t-popup-select {
+    display: flex;
+    width: 168px;
+    padding: 0 20px;
+}
+
+.t-popup-select .t-popup-select-item {
+    width: 18px;
+    height: 16px;
+}
+
+.t-popup-select .t-select-alias {
+    padding-left: 10px;
+}
+
+
+/* Popup content */
+.t-popup-content {
+    width: 836px;
+    margin: 0 auto;
+}
+
+/* Popup info */
+.t-popup-info {
+    display: flex;
+}
+
+.t-left-info,
+.t-right-info {
+    width: 50%;
+}
+
+.t-left-info {
+    margin-right: 26px;
+}
+
+.t-select-gender {
+    height: 32px;
+    display: flex;
+    align-items: center;
+}
+
+.t-code-info input {
+    width: 150px;
+}
+
+.t-name-info {
+    width: calc(100% - 150px);
+}
+
+.t-name-info input {
+    width: 100%;
+}
+
+.t-id-info {
+    width: 245px;
+}
+
+.t-id-info input {
+    width: 100%;
+}
+
+/* Popup contact */
+.t-popup-contact {
+    padding-bottom: 40px;
+    border-bottom: 1px solid #c7c7c7;
+}
+
+/* Popup footer */
+.t-popup-footer {
+    width: 836px;
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.t-popup-footer .t-save-btn {
+    display: flex;
+    align-items: center;
+}
+
+.t-save-and-add {
+    background-color: #35bf22;
+    color: #fff;
+}
+

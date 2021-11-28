@@ -1,0 +1,248 @@
+#t-top-content {
+    
+}
+
+/* Top content */
+.t-top-title {
+    height: 56px;
+    background-color: #e2e2e4;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.t-content-title {
+    margin-left: 16px;
+}
+
+.t-btn-add {
+    margin-right: 16px;
+    background-color: #2ca01c;
+    color: #fff;
+    padding: 0 8px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+}
+
+.t-btn-add:hover {
+    background-color: #35bf22;
+    cursor: pointer;
+}
+
+/* Filter content */
+.t-top-filter {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    margin-right: 16px;
+    margin-top: 16px;
+}
+
+.t-input-filter {
+    display: flex;
+    margin-right: 32px;
+}
+
+#t-input-text {
+    width: 250px;
+    height: 30px;
+    border: 1px solid #babec5;
+    padding: 0 12px 0 10px;
+    outline: unset;
+}
+
+#t-input-text:focus {
+    border: 1px solid #35bf22;
+}
+
+.t-icon-search {
+    background: url('../../content/img/Sprites.64af8f61.svg') no-repeat -992px -360px;
+    width: 16px;
+    height: 16px;
+    margin-left: -28px;
+    margin-top: 6px;
+}
+
+.t-load-btn {
+    background: url('../../content/img/Sprites.64af8f61.svg') no-repeat -1098px -90px;
+    width: 24px;
+    height: 24px;
+}
+
+.t-load-btn:hover,
+.t-icon-search:hover {
+    cursor: pointer;
+}
+
+
+/* Content table */
+#t-table-content {
+    margin: 16px 8px;
+    font-size: 12px;
+}
+
+#t-table-content th {
+    background-color: #eceef1;
+}
+
+#t-table-content .t-row-table {
+    height: 48px;
+}
+
+#t-table-content .t-col-border {
+    border-right: 1px solid #c7c7c7;
+    border-bottom: 1px solid #c7c7c7;
+}
+
+#t-table-content .t-border-bottom {
+    border-bottom: 1px solid #c7c7c7;
+}
+
+#t-table-content .t-padding-10 {
+    padding: 0 10px;
+}
+
+
+.t-checkbox {
+    width: 40px;
+}
+
+.t-checkbox input {
+    width: 18px;
+    height: 16px;
+}
+
+.t-employee-code {
+    width: 96px;
+}
+
+.t-employee-name {
+    width: 130px;
+}
+
+.t-employee-gender {
+    width: 64px;
+}
+
+.t-employee-date {
+    width: 116px;
+}
+
+.t-employee-cmnd {
+    width: 88px;
+}
+
+.t-employee-position {
+    width: 116px;
+}
+
+.t-employee-unit {
+    width: 130px;
+}
+
+.t-employee-account-number {
+    width: 88px;
+}
+
+.t-employee-bank {
+    width: 197px;
+}
+
+.t-employee-branch {
+    width: 197px;
+}
+
+
+/* Handle function box */
+.t-employee-function {
+    width: 88px;
+}
+
+.t-function-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.t-function-name {
+    color: #0075c0;
+    font-weight: bold;
+}
+
+.t-function-extend {
+    background: url('../../content/img/Sprites.64af8f61.svg') no-repeat -896px -359px;
+    width: 16px;
+    height: 16px;
+    padding: 4px;
+    cursor: pointer;
+    position: relative;
+}
+
+.t-function-box {
+    display: none;
+    width: 120px;
+    position: absolute;
+    top: 20px;
+    left: -80px;
+    border: 1px solid #c7c7c7;
+    background-color: #fff;
+}
+
+.t-function-box .t-box-item {
+    height: 28px;
+    line-height: 28px;
+}
+
+.t-function-box .t-box-item:hover {
+    background-color: #e9e9eb;
+    color: #35bf22;
+}
+
+
+
+
+/* Content footer */
+#t-content-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.t-record-number {
+    display: flex;
+}
+
+#t-combobox-number {
+    height: 30px;
+    margin-right: 8px;
+}
+
+.t-list-page {
+    height: 30px;
+    /* width: 200px; */
+    display: flex;
+    align-items: center;
+}
+
+.t-list-page .t-page-number {
+    padding: 0 4px;
+    font-weight: bold;
+}
+
+.t-list-page .t-page-number:hover {
+    cursor: pointer;
+    background-color: #d8d8da;
+    border-radius: 4px;
+}
+
+.t-list-page .t-pre-page,
+.t-list-page .t-next-page {
+    margin: 0 2px;
+}
+
+
+
+
+

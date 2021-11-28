@@ -1,0 +1,66 @@
+#t-dialog {
+    display: none;
+}
+
+#t-dialog-remove {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#t-dialog-container {
+    width: 444px;
+    height: 200px;
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 32px;
+}
+
+/* Dialog top */
+.t-dialog-warning {
+    display: flex;
+    align-items: center;
+    height: 80px;
+}
+
+.t-warning-icon {
+    background: url('../../content/img/Sprites.64af8f61.svg') no-repeat -592px -456px;
+    width: 48px;
+    height: 48px;
+}
+
+.t-warning-title {
+    margin-left: 16px;
+}
+
+
+/* Dialog bottom */
+.t-dialog-btn {
+    height: 36px;
+    padding-top: 20px;
+    border-top: 1px solid #c7c7c7;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.t-dialog-cancel:hover {
+    background-color: #c7c7c7;
+}
+
+.t-dialog-agree {
+    background-color: #2ca01c;
+    color: #fff;
+}
+
+.t-dialog-agree:hover {
+    background-color: #35bf22;
+}
+
+
