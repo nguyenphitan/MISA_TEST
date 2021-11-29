@@ -1,0 +1,79 @@
+.t-combobox {
+    width: 100%;
+    height: 32px;
+    border: 1px solid #BBBBBB;
+    border-radius: 4px;
+    min-width: 100px;
+    padding: 0 12px;
+    outline: unset;
+}
+
+.t-combobox:hover {
+    border-color: #019160;
+}
+
+.tcombobox {
+    display: flex;
+    position: relative;
+    /* margin-top: 8px; */
+    width: 100%;
+}
+
+.tcombobox input {
+    border-radius: 4px;
+    padding: 0 56px 0 16px;
+}
+
+.tcombobox input:focus~button {
+    border-color: #019160;
+    color: #019160;
+}
+
+.tcombobox .t-combobox-button {
+    width: 32px;
+    height: 32px;
+    text-align: center;
+    border:  1px solid #c7c7c7;
+    border-radius: 0 4px 4px 0;
+    outline: unset;
+    position: absolute;
+    right: 0;
+    background-color: unset;
+    color: #000000;
+}
+
+.tcombobox .t-combobox-button:hover {
+    background-color: #d6d6d6;
+    cursor: pointer;
+}
+
+.tcombobox .t-combobox-data {
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    box-shadow: 0 3px 5px #BBBBBB;
+    display: none;
+    z-index: 2;
+    background-color: #ffffff;
+}
+
+.tcombobox .t-combobox-item {
+    height: 32px;
+    display: flex;
+    align-items: center;
+    padding-left: 34px;
+}
+
+.tcombobox .t-combobox-item:hover,
+.t-combobox-item-hover {
+    background-color: #1ea87a !important;
+    cursor: pointer;
+}
+
+.t-combobox-extends {
+    background: url('../../content/img/Sprites.64af8f61.svg') no-repeat -564px -360px;
+    width: 16px;
+    height: 16px;
+    padding: 0px 4px;
+    cursor: pointer;
+}

@@ -69,9 +69,14 @@
     background: url('../../content/img/Sprites.64af8f61.svg') no-repeat -1098px -90px;
     width: 24px;
     height: 24px;
+    cursor: pointer;
 }
 
-.t-load-btn:hover,
+.t-load-btn:active {
+    width: 22px;
+    height: 22px;
+}
+
 .t-icon-search:hover {
     cursor: pointer;
 }
@@ -81,6 +86,11 @@
 #t-table-content {
     margin: 16px 8px;
     font-size: 12px;
+}
+
+#t-table-container {
+    height: 480px;
+    overflow: scroll;
 }
 
 #t-table-content th {
@@ -104,6 +114,10 @@
     padding: 0 10px;
 }
 
+/* Table */
+#t-table {
+
+}
 
 .t-checkbox {
     width: 40px;
@@ -169,6 +183,7 @@
 .t-function-name {
     color: #0075c0;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .t-function-extend {
@@ -188,6 +203,7 @@
     left: -80px;
     border: 1px solid #c7c7c7;
     background-color: #fff;
+    z-index: 2;
 }
 
 .t-function-box .t-box-item {

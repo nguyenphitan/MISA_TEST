@@ -170,61 +170,62 @@
 
                 <!-- Begin table content -->
                 <div id="t-table-content">
-                    <!-- Begin table -->
-                    <table id="t-table">
-                        <!-- thead -->
-                        <thead>
-                            <tr class="t-row-table">
-                                <th class="t-checkbox t-col-border t-padding-10"> <input type="checkbox" name="" id=""> </th>
-                                <th class="t-employee-code t-col-border t-padding-10">MÃ NHÂN VIÊN</th>
-                                <th class="t-employee-name t-col-border t-padding-10">TÊN NHÂN VIÊN</th>
-                                <th class="t-employee-gender t-col-border t-padding-10">GIỚI TÍNH</th>
-                                <th class="t-employee-date t-col-border t-padding-10">NGÀY SINH</th>
-                                <th class="t-employee-cmnd t-col-border t-padding-10">SỐ CMND</th>
-                                <th class="t-employee-position t-col-border t-padding-10">CHỨC DANH</th>
-                                <th class="t-employee-unit t-col-border t-padding-10">TÊN ĐƠN VỊ</th>
-                                <th class="t-employee-account-number t-col-border t-padding-10">SỐ TÀI KHOẢN</th>
-                                <th class="t-employee-bank t-col-border t-padding-10">TÊN NGÂN HÀNG</th>
-                                <th class="t-employee-branch t-col-border t-padding-10">CHI NHÁNH TK NGÂN HÀNG</th>
-                                <th class="t-employee-function t-border-bottom t-padding-10">CHỨC NĂNG</th>
-                            </tr>
-                        </thead>
-                        <!-- End thead -->
+                    <div id="t-table-container">
+                        <!-- Begin table -->
+                        <table id="t-table">
+                            <!-- thead -->
+                            <thead>
+                                <tr class="t-row-table">
+                                    <th class="t-checkbox t-col-border t-padding-10"> <input type="checkbox" name="" id=""> </th>
+                                    <th class="t-employee-code t-col-border t-padding-10">MÃ NHÂN VIÊN</th>
+                                    <th class="t-employee-name t-col-border t-padding-10">TÊN NHÂN VIÊN</th>
+                                    <th class="t-employee-gender t-col-border t-padding-10">GIỚI TÍNH</th>
+                                    <th class="t-employee-date t-col-border t-padding-10">NGÀY SINH</th>
+                                    <th class="t-employee-cmnd t-col-border t-padding-10">SỐ CMND</th>
+                                    <th class="t-employee-position t-col-border t-padding-10">CHỨC DANH</th>
+                                    <th class="t-employee-unit t-col-border t-padding-10">TÊN ĐƠN VỊ</th>
+                                    <th class="t-employee-account-number t-col-border t-padding-10">SỐ TÀI KHOẢN</th>
+                                    <th class="t-employee-bank t-col-border t-padding-10">TÊN NGÂN HÀNG</th>
+                                    <th class="t-employee-branch t-col-border t-padding-10">CHI NHÁNH TK NGÂN HÀNG</th>
+                                    <th class="t-employee-function t-border-bottom t-padding-10">CHỨC NĂNG</th>
+                                </tr>
+                            </thead>
+                            <!-- End thead -->
 
-
-                        <!-- tbody -->
-                        <tbody>
-                            <tr class="t-row-table">
-                                <td class="t-checkbox t-col-border t-padding-10"> <input type="checkbox" name="" id=""> </td>
-                                <td class="t-employee-code t-col-border t-padding-10">00012</td>
-                                <td class="t-employee-name t-col-border t-padding-10">Nguyễn Thạc Hương</td>
-                                <td class="t-employee-gender t-col-border t-padding-10 t-align-center">Nữ</td>
-                                <td class="t-employee-date t-col-border t-padding-10 t-align-center">12/08/2001</td>
-                                <td class="t-employee-cmnd t-col-border t-padding-10">026452495</td>
-                                <td class="t-employee-position t-col-border t-padding-10">Trưởng phòng</td>
-                                <td class="t-employee-unit t-col-border t-padding-10">Kiểm hàng kho</td>
-                                <td class="t-employee-account-number t-col-border t-padding-10">04264585221</td>
-                                <td class="t-employee-bank t-col-border t-padding-10">TP Bank</td>
-                                <td class="t-employee-branch t-col-border t-padding-10">Hà Nội</td>
-                                <td class="t-employee-function t-border-bottom t-padding-10 t-align-center">
-                                    <div class="t-function-btn">
-                                        <div class="t-function-name">Sửa</div>
-                                        <div class="t-function-extend">
-                                            <div class="t-function-box">
-                                                <div class="t-box-item">Nhân bản</div>
-                                                <div class="t-box-item t-function-remove">Xóa</div>
-                                                <div class="t-box-item">Ngừng sử dụng</div>
+                            <!-- tbody -->
+                            <tbody>
+                                <!-- <tr class="t-row-table">
+                                    <td class="t-checkbox t-col-border t-padding-10"> <input type="checkbox" name="" id=""> </td>
+                                    <td class="t-employee-code t-col-border t-padding-10">00012</td>
+                                    <td class="t-employee-name t-col-border t-padding-10">Nguyễn Thạc Hương</td>
+                                    <td class="t-employee-gender t-col-border t-padding-10 t-align-center">Nữ</td>
+                                    <td class="t-employee-date t-col-border t-padding-10 t-align-center">12/08/2001</td>
+                                    <td class="t-employee-cmnd t-col-border t-padding-10">026452495</td>
+                                    <td class="t-employee-position t-col-border t-padding-10">Trưởng phòng</td>
+                                    <td class="t-employee-unit t-col-border t-padding-10">Kiểm hàng kho</td>
+                                    <td class="t-employee-account-number t-col-border t-padding-10">04264585221</td>
+                                    <td class="t-employee-bank t-col-border t-padding-10">TP Bank</td>
+                                    <td class="t-employee-branch t-col-border t-padding-10">Hà Nội</td>
+                                    <td class="t-employee-function t-border-bottom t-padding-10 t-align-center">
+                                        <div class="t-function-btn">
+                                            <div class="t-function-name">Sửa</div>
+                                            <div class="t-function-extend">
+                                                <div class="t-function-box">
+                                                    <div class="t-box-item">Nhân bản</div>
+                                                    <div class="t-box-item t-function-remove">Xóa</div>
+                                                    <div class="t-box-item">Ngừng sử dụng</div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                        <!-- End tbody -->
-                    </table>
-                    <!-- End table -->
+                                    </td>
+                                </tr> -->
+                            </tbody>
+                            <!-- End tbody -->
+                        </table>
+                        <!-- End table -->
+                    </div>
 
-                    <br><br><br><br><br><br><br><br><br><br>
+                    <br>
                     <!-- Content footer -->
                     <div id="t-content-footer">
                         <div class="t-total-record">Tổng số: <b>1</b> bản ghi</div>
@@ -291,23 +292,30 @@
                                 <div class="t-row t-flex t-mg-bottom-12">
                                     <div class="t-code-info t-mg-right-6">
                                         <div class="t-info-name">Mã <span class="t-color-red">*</span></div>
-                                        <input class="t-input t-input-info" type="text">
+                                        <input class="t-input t-input-info" type="text" fieldName="EmployeeCode">
                                     </div>
                                     <div class="t-name-info">
                                         <div class="t-info-name">Tên <span class="t-color-red">*</span></div>
-                                        <input class="t-input t-input-info" type="text">
+                                        <input class="t-input t-input-info" type="name" fieldName="FullName">
                                     </div>
                                 </div>
                                 <div class="t-row t-mg-bottom-12">
-                                    <div class="t-unit-info">
+                                    <div class="t-department-info">
                                         <div class="t-info-name">Đơn vị <span class="t-color-red">*</span></div>
-                                        <input class="t-input t-input-info t-w-100" type="text">
+                                        <!-- <input class="t-input t-input-info t-w-100" type="text" fieldName="DepartmentName"> -->
+                                        <combobox id="t-employeeDepartmentId-txt" fieldName="DepartmentId" api="http://cukcuk.manhnv.net/api/v1/Departments" propertyDisplay="DepartmentName" propertyValue="DepartmentId">
+
+                                        </combobox>
                                     </div>
                                 </div>
                                 <div class="t-row t-mg-bottom-12">
                                     <div class="t-position-info">
                                         <div class="t-info-name">Chức danh </div>
-                                        <input class="t-input t-input-info t-w-100" type="text">
+                                        <!-- <input class="t-input t-input-info t-w-100" type="text" fieldName="PositionName"> -->
+                                        <combobox id="t-employeePositionId-txt" fieldName="PositionId" api="http://cukcuk.manhnv.net/api/v1/Positions" propertyDisplay="PositionName" propertyValue="PositionId">
+
+                                        </combobox>
+
                                     </div>
                                 </div>
                             </div>
@@ -317,16 +325,16 @@
                                 <div class="t-row t-flex t-mg-bottom-12">
                                     <div class="t-date-info">
                                         <div class="t-info-name">Ngày sinh </div>
-                                        <input class="t-input t-input-info t-mg-right-16" type="date">
+                                        <input class="t-input t-input-info t-mg-right-16" type="date" fieldName="DateOfBirth">
                                     </div>
                                     <div class="t-gender-info">
                                         <div class="t-info-name">Giới tính </div>
-                                        <div class="t-select-gender">
-                                            <input class="t-input-radio t-mg-right-10" type="radio" name="gender" id="">
+                                        <div class="t-select-gender t-input-info" value="" fieldName="Gender">
+                                            <input class="t-input-radio t-mg-right-10" value="1" type="radio" name="gender" id="">
                                             <div class="t-popup-gender-name t-mg-right-16">Nam</div>
-                                            <input class="t-input-radio t-mg-right-10" type="radio" name="gender" id="">
+                                            <input class="t-input-radio t-mg-right-10" value="0" type="radio" name="gender" id="">
                                             <div class="t-popup-gender-name t-mg-right-16">Nữ</div>
-                                            <input class="t-input-radio t-mg-right-10" type="radio" name="gender" id="">
+                                            <input class="t-input-radio t-mg-right-10" value="2" type="radio" name="gender" id="">
                                             <div class="t-popup-gender-name">Khác</div>
                                         </div>
                                     </div>
@@ -334,17 +342,17 @@
                                 <div class="t-row t-mg-bottom-12 t-flex">
                                     <div class="t-id-info t-mg-right-6">
                                         <div class="t-info-name">Số CMND</div>
-                                        <input class="t-input t-input-info" type="text">
+                                        <input class="t-input t-input-info" type="text" fieldName="IdentityNumber">
                                     </div>
                                     <div class="t-id-date-info">
                                         <div class="t-info-name">Ngày cấp</div>
-                                        <input class="t-input t-input-info" type="date">
+                                        <input class="t-input t-input-info" type="date" fieldName="IdentityDate">
                                     </div>
                                 </div>
                                 <div class="t-row t-mg-bottom-12">
                                     <div class="t-id-address-info">
                                         <div class="t-info-name">Nơi cấp</div>
-                                        <input class="t-input t-input-info t-w-100" type="text">
+                                        <input class="t-input t-input-info t-w-100" type="text" fieldName="IdentityPlace">
                                     </div>
                                 </div>
                             </div>
@@ -357,37 +365,37 @@
                             <div class="t-row t-mg-bottom-12">
                                 <div class="t-address-info">
                                     <div class="t-info-name">Địa chỉ</div>
-                                    <input class="t-input t-input-info t-w-100" type="text">
+                                    <input class="t-input t-input-info t-w-100" type="text" fieldName="Address">
                                 </div>
                             </div>
     
                             <div class="t-row t-mg-bottom-12 t-flex">
-                                <div class="t-address-info">
+                                <div class="t-mobile-info">
                                     <div class="t-info-name">Điện thoại di động</div>
-                                    <input class="t-input t-input-info t-mg-right-6" type="text">
+                                    <input class="t-input t-input-info t-mg-right-6" type="text" fieldName="PhoneNumber">
                                 </div>
-                                <div class="t-address-info">
+                                <div class="t-telephone-info">
                                     <div class="t-info-name">Điện thoại cố định</div>
-                                    <input class="t-input t-input-info t-mg-right-6" type="text">
+                                    <input class="t-input t-input-info t-mg-right-6" type="text" fieldName="">
                                 </div>
-                                <div class="t-address-info">
+                                <div class="t-email-info">
                                     <div class="t-info-name">Email</div>
-                                    <input class="t-input t-input-info t-203px" type="text">
+                                    <input class="t-input t-input-info t-203px" type="email" fieldName="Email">
                                 </div>
                             </div>
     
                             <div class="t-row t-mg-bottom-12 t-flex">
-                                <div class="t-address-info">
+                                <div class="t-account-info">
                                     <div class="t-info-name">Tài khoản ngân hàng</div>
-                                    <input class="t-input t-input-info t-mg-right-6" type="text">
+                                    <input class="t-input t-input-info t-mg-right-6" type="text" fieldName="">
                                 </div>
-                                <div class="t-address-info">
+                                <div class="t-bank-info">
                                     <div class="t-info-name">Tên ngân hàng</div>
-                                    <input class="t-input t-input-info t-mg-right-6" type="text">
+                                    <input class="t-input t-input-info t-mg-right-6" type="text" fieldName="">
                                 </div>
-                                <div class="t-address-info">
+                                <div class="t-branch-info">
                                     <div class="t-info-name">Chi nhánh</div>
-                                    <input class="t-input t-input-info t-203px" type="text">
+                                    <input class="t-input t-input-info t-203px" type="text" fieldName="">
                                 </div>
                             </div>
                         </div>
@@ -432,6 +440,17 @@
         </div>
         <!-- End dialog -->
 
+        <!-- Load data overlay -->
+        <div id="t-load-overlay">
+            <div id="t-load">
+                <div class="t-load-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="32" height="32" viewBox="0 0 32 32"><title>32px_dots 06</title><g class="nc-loop_dots-06-32" transform="rotate(45 16 16)"><circle fill="#2ca01c" cx="16" cy="3" r="3"/><circle fill="#2ca01c" cx="25.19239" cy="6.80761" r="3" opacity="0.4"/><circle fill="#2ca01c" cx="29" cy="16" r="3" opacity="0.4"/><circle fill="#2ca01c" cx="25.19239" cy="25.19239" r="3" opacity="0.4"/><circle fill="#2ca01c" cx="16" cy="29" r="3" opacity="0.4"/><circle fill="#2ca01c" cx="6.80761" cy="25.19239" r="3" opacity="0.4"/><circle fill="#2ca01c" cx="3" cy="16" r="3" opacity="0.6"/><circle fill="#2ca01c" cx="6.80761" cy="6.80761" r="3" opacity="0.8"/></g><script>!function(){function t(t){this.element=t,this.animationId,this.start=null,this.init()}if(!window.requestAnimationFrame){var i=null;window.requestAnimationFrame=function(t,n){var e=(new Date).getTime();i||(i=e);var a=Math.max(0,16-(e-i)),o=window.setTimeout(function(){t(e+a)},a);return i=e+a,o}}t.prototype.init=function(){var t=this;this.animationId=window.requestAnimationFrame(t.triggerAnimation.bind(t))},t.prototype.reset=function(){var t=this;window.cancelAnimationFrame(t.animationId)},t.prototype.triggerAnimation=function(t){var i=this;this.start||(this.start=t);var n=t-this.start;800>n||(this.start=this.start+800),this.element.setAttribute("transform","rotate("+parseInt(Math.min(n/100,8))%8*45+" 16 16)");if(document.documentElement.contains(this.element))window.requestAnimationFrame(i.triggerAnimation.bind(i))};var n=document.getElementsByClassName("nc-loop_dots-06-32"),e=[];if(n)for(var a=0;n.length>a;a++)!function(i){e.push(new t(n[i]))}(a);document.addEventListener("visibilitychange",function(){"hidden"==document.visibilityState?e.forEach(function(t){t.reset()}):e.forEach(function(t){t.init()})})}();</script>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <!-- End load data overlay -->
+
     </div>
     <!-- End Container -->
 
@@ -440,7 +459,9 @@
 
 
     <!-- Library JS -->
+    <script src="./js/lib/combobox.js"></script>
     <!-- Common JS -->
+    <script src="./js/base/common.js"></script>
     <!-- Private JS -->
     <script src="./js/page/employee.js"></script>
 </body>
