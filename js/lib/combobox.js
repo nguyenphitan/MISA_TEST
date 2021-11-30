@@ -25,6 +25,7 @@ $(document).ready(function() {
             $.ajax({
                 type: "GET",
                 url: api,
+                async: false,
                 success: function (data) {
                     // Build combobox data
                     for (const item of data) {
