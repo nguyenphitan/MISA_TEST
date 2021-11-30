@@ -122,6 +122,26 @@
     width: 100%;
 }
 
+#t-required {
+    height: 20px;
+    width: 130px;
+    background-color: #000;
+    border-radius: 4px;
+    color: #fff;
+    text-align: center;
+    line-height: 20px;
+    padding: 0 2px;
+    position: absolute;
+    left: calc(50% - 65px);
+    margin: -10px auto 0;
+    z-index: 2;
+    display: none;
+}
+
+#t-popup .tcombobox #t-required {
+    margin-top: 22px;
+}
+
 /* Popup contact */
 .t-popup-contact {
     padding-bottom: 40px;

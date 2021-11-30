@@ -62,10 +62,12 @@ class TCombobox {
             const propertyDisplay = $(combobox).attr('propertyDisplay');
             const propertyValue = $(combobox).attr('propertyValue');
             const fieldName = $(combobox).attr('fieldName');
+            const required = $(combobox).attr('constraint');
             const id = $(combobox).attr('id');
             // Build HTML của combobox:
             let comboboxHTML = $(`<div tcombobox id="${id||''}" class="tcombobox t-input-info" value="" fieldName="${fieldName}">
-                                <input type="text" class="t-combobox t-combobox-input">
+                                <input type="text" ${required || ''} class="t-combobox t-combobox-input">
+                                <div id="t-required">Trường bắt buộc</div>
                                 <button tabindex="-1" class="t-combobox-button">
                                     <i class="t-combobox-extends"></i>
                                 </button>

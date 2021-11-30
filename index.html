@@ -264,29 +264,31 @@
                             <!-- Left infor -->
                             <div class="t-left-info t-mg-bottom-12">
                                 <div class="t-row t-flex t-mg-bottom-12">
-                                    <div class="t-code-info t-mg-right-6">
+                                    <div class="t-code-info t-mg-right-6 t-relative">
                                         <div class="t-info-name">Mã <span class="t-color-red">*</span></div>
-                                        <input class="t-input t-input-info" type="text" fieldName="EmployeeCode">
+                                        <input class="t-input t-input-info" required constraint="required" type="text" fieldName="EmployeeCode">
+                                        <div id="t-required">Trường bắt buộc</div>
                                     </div>
-                                    <div class="t-name-info">
+                                    <div class="t-name-info t-relative">
                                         <div class="t-info-name">Tên <span class="t-color-red">*</span></div>
-                                        <input class="t-input t-input-info" type="name" fieldName="FullName">
+                                        <input class="t-input t-input-info" required constraint="required" type="name" fieldName="FullName">
+                                        <div id="t-required">Trường bắt buộc</div>
                                     </div>
                                 </div>
                                 <div class="t-row t-mg-bottom-12">
-                                    <div class="t-department-info">
+                                    <div class="t-department-info t-relative">
                                         <div class="t-info-name">Đơn vị <span class="t-color-red">*</span></div>
                                         <!-- <input class="t-input t-input-info t-w-100" type="text" fieldName="DepartmentName"> -->
-                                        <combobox id="t-employeeDepartmentId-txt" fieldName="DepartmentId" api="http://cukcuk.manhnv.net/api/v1/Departments" propertyDisplay="DepartmentName" propertyValue="DepartmentId">
+                                        <combobox id="t-employeeDepartmentId-txt" required constraint="required" fieldName="DepartmentId" api="http://cukcuk.manhnv.net/api/v1/Departments" propertyDisplay="DepartmentName" propertyValue="DepartmentId">
 
                                         </combobox>
                                     </div>
                                 </div>
                                 <div class="t-row t-mg-bottom-12">
-                                    <div class="t-position-info">
+                                    <div class="t-position-info t-relative">
                                         <div class="t-info-name">Chức danh </div>
                                         <!-- <input class="t-input t-input-info t-w-100" type="text" fieldName="PositionName"> -->
-                                        <combobox id="t-employeePositionId-txt" fieldName="PositionId" api="http://cukcuk.manhnv.net/api/v1/Positions" propertyDisplay="PositionName" propertyValue="PositionId">
+                                        <combobox id="t-employeePositionId-txt" constraint="required" fieldName="PositionId" api="http://cukcuk.manhnv.net/api/v1/Positions" propertyDisplay="PositionName" propertyValue="PositionId">
 
                                         </combobox>
 
@@ -383,7 +385,9 @@
                         <button class="t-popup-cancel t-btn t-bold">Hủy</button>
                         <div class="t-save-btn">
                             <button class="t-save-only t-btn t-bold t-mg-right-6">Cất</button>
-                            <button class="t-save-and-add t-btn t-bold">Cất và thêm</button>
+                            <!-- <button class="t-save-and-add t-btn t-bold">Cất và thêm</button> -->
+                            <input class="t-save-and-add t-btn t-bold" type="submit" required constraint="required" value="Cất và thêm">
+                            <!-- <input type="submit" value="Cất và thêm" class="t-save-and-add t-btn t-bold"> -->
                         </div>
                     </div>
                     <!-- End popup footer -->
@@ -437,6 +441,7 @@
     <!-- Common JS -->
     <script src="./js/base/common.js"></script>
     <script src="./js/base/enum.js"></script>
+    <script src="./js/base/input.js"></script>
     <!-- Private JS -->
     <script src="./js/page/employee.js"></script>
 </body>

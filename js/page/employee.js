@@ -154,72 +154,86 @@ class employeePage {
      * Version: 1
      */
     addEmployee(sender) {
-        let me = this;
-        let employee = {};
-        // Lấy ra tất cả các input trong popup:
-        let inputs = $('#t-popup .t-popup-content .t-input-info');
-        // Duyệt, lấy ra các value:
-        for (const input of inputs) {
-            let fieldName = $(input).attr('fieldName');
-            let value = $(input).val();
-            if(fieldName != '' && value) {
-                // Build object employee:
-                employee[fieldName] = value;
-            }
-            debugger
-        }
-        // return;
 
-        // Duyệt các combobox
-        // Lấy ra value hiện tại
-        let comboboxs = $('#t-popup div[tcombobox]');
-        for (const combobox of comboboxs) {
-            let fieldName = $(combobox).data('fieldName');
-            let value = $(combobox).attr('value');
-            if(fieldName != '') {
-                // Build vào object hiện tại
-                employee[fieldName] = value;
-            }
-            debugger
-        }
+        // Kiểm tra các trường bắt buộc đã được nhập hay chưa:
+        let check = InputElement.checkInput();
 
-        // Gọi đến api cất dữ liệu:
-        if(me.FormMode == Enum.FormMode.Add) {
-            debugger
-            $.ajax({
-                type: "POST",
-                url: "http://cukcuk.manhnv.net/api/v1/Employees",
-                // async: false,
-                data: JSON.stringify(employee),
-                dataType: "json",
-                contentType: "application/json",
-                success: function (response) {
-                    // Load lại dữ liệu:
-                    me.loadData();
-                    debugger
-                    // Ẩn popup:
-                    $('#t-overlay').fadeOut(300);
+        if(check) {
+            let me = this;
+            let employee = {};
+            // Lấy ra tất cả các input trong popup:
+            let inputs = $('#t-popup .t-popup-content .t-input-info');
+            // Duyệt, lấy ra các value:
+            for (const input of inputs) {
+                let fieldName = $(input).attr('fieldName');
+                let value = $(input).val();
+                if(fieldName != '' && value) {
+                    // Build object employee:
+                    employee[fieldName] = value;
                 }
-            });
-        }
-        else {
-            debugger
-            $.ajax({
-                type: "PUT",
-                url: `http://cukcuk.manhnv.net/api/v1/Employees/${me.idSelected}`,
-                // async: false,
-                data: JSON.stringify(employee),
-                dataType: "json",
-                contentType: "application/json",
-                success: function (response) {
-                    // Load lại dữ liệu
-                    me.loadData();
-                    debugger
-                    // Ẩn popup
-                    $('#t-overlay').fadeOut(300);
+                debugger
+            }
+            // return;
+
+            // Duyệt các combobox
+            // Lấy ra value hiện tại
+            let comboboxs = $('#t-popup div[tcombobox]');
+            for (const combobox of comboboxs) {
+                let fieldName = $(combobox).data('fieldName');
+                let value = $(combobox).attr('value');
+                if(fieldName != '') {
+                    // Build vào object hiện tại
+                    employee[fieldName] = value;
                 }
-            });
+                debugger
+            }
+
+            // Gọi đến api cất dữ liệu:
+            if(me.FormMode == Enum.FormMode.Add) {
+                debugger
+                $.ajax({
+                    type: "POST",
+                    url: "http://cukcuk.manhnv.net/api/v1/Employees",
+                    // async: false,
+                    data: JSON.stringify(employee),
+                    dataType: "json",
+                    contentType: "application/json",
+                    success: function (response) {
+                        // Load lại dữ liệu:
+                        me.loadData();
+                        debugger
+                        // Ẩn popup:
+                        $('#t-overlay').fadeOut(300);
+                    }
+                });
+            }
+            else {
+                debugger
+                $.ajax({
+                    type: "PUT",
+                    url: `http://cukcuk.manhnv.net/api/v1/Employees/${me.idSelected}`,
+                    // async: false,
+                    data: JSON.stringify(employee),
+                    dataType: "json",
+                    contentType: "application/json",
+                    success: function (response) {
+                        // Load lại dữ liệu
+                        me.loadData();
+                        debugger
+                        // Ẩn popup
+                        $('#t-overlay').fadeOut(300);
+                    }
+                });
+            }
         }
+        // else {
+        //     // console.log('có trường bắt buộc chưa được nhập');
+        //     // // Hiển thị thông báo tại trường input chưa có dữ liệu:
+        //     // let input = InputElement.notValue;
+        //     // $(input).siblings('#t-required').show();
+            
+        // }
+        
         
     }
 
