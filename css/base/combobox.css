@@ -9,7 +9,7 @@
 }
 
 .t-combobox:hover {
-    border-color: #019160;
+    border-color: #35bf22;
 }
 
 .tcombobox {
@@ -25,8 +25,8 @@
 }
 
 .tcombobox input:focus~button {
-    border-color: #019160;
-    color: #019160;
+    border-color: #35bf22;
+    color: #35bf22;
 }
 
 .tcombobox .t-combobox-button {
@@ -64,9 +64,14 @@
     padding-left: 34px;
 }
 
+.t-combobox-item:hover {
+    color: #fff;
+}
+
 .tcombobox .t-combobox-item:hover,
 .t-combobox-item-hover {
-    background-color: #1ea87a !important;
+    background-color: #35bf22 !important;
+    color: #fff;
     cursor: pointer;
 }
 

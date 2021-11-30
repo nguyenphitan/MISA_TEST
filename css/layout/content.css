@@ -226,6 +226,11 @@
     align-items: center;
 }
 
+.t-page-area {
+    display: flex;
+    align-items: center;
+}
+
 .t-record-number {
     display: flex;
 }
@@ -233,6 +238,11 @@
 #t-combobox-number {
     height: 30px;
     margin-right: 8px;
+}
+
+.t-page-active {
+    background-color: #d8d8da;
+    border-radius: 4px;
 }
 
 .t-list-page {
@@ -253,9 +263,17 @@
     border-radius: 4px;
 }
 
-.t-list-page .t-pre-page,
-.t-list-page .t-next-page {
-    margin: 0 2px;
+.t-page-area .t-pre-page,
+.t-page-area .t-next-page {
+    padding: 0 4px;
+    margin: 0 4px;
+}
+
+.t-page-area .t-pre-page:hover,
+.t-page-area .t-next-page:hover {
+    cursor: pointer;
+    background-color: #d8d8da;
+    border-radius: 4px;
 }
 
 

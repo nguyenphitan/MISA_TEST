@@ -23,7 +23,7 @@ class InputElement {
      */
     initEvent() {
         // Kiểm tra thiếu thông tin:
-        console.log($('#t-popup input[required]'));
+        // console.log($('#t-popup input[required]'));
 
         // Lấy ra các input có attribute là required:
         let inputs = $('#t-popup input[required]');
