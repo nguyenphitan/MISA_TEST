@@ -5,6 +5,7 @@ $(document).ready(function() {
 class employeePage {
     FormMode = null;
     idSelected = null;
+    nameSelected = null;
     constructor() {
         // Load dữ liệu
         this.loadData();
@@ -37,13 +38,13 @@ class employeePage {
         // Sự kiện click vào nút sửa trên bản ghi (Hộp chức năng):
         $('#t-table-content .t-function-extend').click(this.openFunctionBox);
         
-        // Click xóa bản ghi:
-        $('#t-table-content .t-function-remove').on('click', this.delete.bind(this));
-        $('#t-dialog .t-dialog-cancel').click(this.openDialogWarning);
-        $('#t-dialog .t-dialog-agree').click(this.openDialogWarning);
+        // Click vào nút xóa bản ghi:
+        $('#t-table-content .t-function-remove').on('click', this.openDialogWarning.bind(this));
+        $('#t-dialog .t-dialog-cancel').click(this.closeDialogWarning);
+        $('#t-dialog .t-dialog-agree').click(this.delete.bind(this));
 
         // Click chọn giới tính:
-        $('.t-select-gender input').click(this.handleRadioGender);
+        $('.t-select-gender input').on('click', this.handleRadioGender);
 
     }
 
@@ -57,16 +58,23 @@ class employeePage {
         $(e.target).children().fadeToggle(300);
 
         // Đóng hộp chức năng:
-        let functionItem = $(e.target).children();
-        functionItem.on('click', function() {
-            $(funcionItem).hide();
-        })
+        // let functionItem = $(e.target).children();
+        // functionItem.on('click', function() {
+        //     $(funcionItem).hide();
+        // })
 
     }
 
     // Mở/Đóng popup thêm mới nhân viên:
-    openPopup() {
+    openPopup(e) {
+        // Reset tất cả các input
+        // let inputs = $('#t-overlay .t-popup-content input');
+        // for (const input of inputs) {
+        //     $(input).val(unset);
+        // }
+        // debugger
 
+        
         let me = this;
         me.FormMode = Enum.FormMode.Add;
 
@@ -76,6 +84,7 @@ class employeePage {
         $.ajax({
             type: "GET",
             url: "http://cukcuk.manhnv.net/api/v1/Employees/NewEmployeeCode",
+            async: false,
             success: function (response) {
                 if(response) {
                     const employeeCode = response;
@@ -86,6 +95,15 @@ class employeePage {
                 alert('Tạo mã nhân viên không thành công!');
             }
         });
+
+        // Đóng popup:
+        // $('#t-overlay .t-close-icon').click(this.closePopup);
+        // $('#t-overlay .t-popup-cancel').click(this.closePopup);
+        // $('#t-overlay .t-save-only').click(this.closePopup);
+
+        // Click chọn giới tính:
+        // $('.t-select-gender input').on('click', this.handleRadioGender);
+
     }
 
     closePopup(e) {
@@ -95,14 +113,40 @@ class employeePage {
         // Reset tất cả các input
         let inputs = $('#t-overlay .t-popup-content input');
         for (const input of inputs) {
-            $(input).val(null);
+            $(input).val(unset);    // Gán về giá trị value mặc định ban đầu
+        }
+
+        // Reset tất cả các combobox
+        let comboboxs = $('#t-popup div[tcombobox]');
+        for (const combobox of comboboxs) {
+            $(combobox).val(unset)
+            debugger
         }
     }
 
     // Mở/Đóng dialog warning:
-    openDialogWarning() {
-        $('#t-dialog').fadeToggle(300);
+    openDialogWarning(sender) {
+        $('#t-dialog').fadeIn(300);
+
+        // Lấy ra id và họ và tên của bản ghi:
+        let currentRecord = $(sender.target).parents('.t-row-table');
+        let employeeId = currentRecord.data('employeeId');
+        let fullName = $(currentRecord).children('.t-employee-name').text();
+        this.idSelected = employeeId;
+        this.nameSelected = fullName;
+        debugger
+
+        // Build dữ liệu cho dialog:
+        $('#t-name-remove').text(`<${fullName}>`);
+
+        // Đóng hộp chức năng:
+        $('#t-table .t-function-box').hide();
     }
+
+    closeDialogWarning() {
+        $('#t-dialog').fadeOut(300);
+    }
+
 
     /**
      * Thêm mới nhân viên
@@ -145,6 +189,7 @@ class employeePage {
             $.ajax({
                 type: "POST",
                 url: "http://cukcuk.manhnv.net/api/v1/Employees",
+                // async: false,
                 data: JSON.stringify(employee),
                 dataType: "json",
                 contentType: "application/json",
@@ -162,6 +207,7 @@ class employeePage {
             $.ajax({
                 type: "PUT",
                 url: `http://cukcuk.manhnv.net/api/v1/Employees/${me.idSelected}`,
+                // async: false,
                 data: JSON.stringify(employee),
                 dataType: "json",
                 contentType: "application/json",
@@ -184,6 +230,12 @@ class employeePage {
      */
     changeData(sender) {
 
+        // // Reset tất cả các input
+        // let inputs = $('#t-overlay .t-popup-content input');
+        // for (const input of inputs) {
+        //     $(input).val(unset);    // Gán về giá trị value mặc định ban đầu
+        // }
+
         let me = this;
 
         // Lấy ra employeeId (khóa chính) của bản ghi hiện tại:
@@ -200,6 +252,7 @@ class employeePage {
         $.ajax({
             type: "GET",
             url: `http://cukcuk.manhnv.net/api/v1/Employees/${employeeId}`,
+            // async: false,
             success: function (employee) {
                 // Bind dữ liệu vào form:
                 // Lấy toàn bộ các thẻ input info:
@@ -232,15 +285,17 @@ class employeePage {
      */
     delete(sender) {
         let me = this;
+        debugger
         // Lấy ra id của bản ghi:
-        let employeeId = $(sender.target).parents('.t-row-table').data('employeeId');
+        // let employeeId = $(sender.target).parents('.t-row-table').data('employeeId');
         // Gọi đến api xóa bản ghi:
         $.ajax({
             type: "DELETE",
-            url: `http://cukcuk.manhnv.net/api/v1/Employees/${employeeId}`,
+            url: `http://cukcuk.manhnv.net/api/v1/Employees/${me.idSelected}`,
             // async: false,
             success: function (response) {
                 me.loadData();
+                me.closeDialogWarning();
             }
         });
     }
@@ -316,19 +371,20 @@ class employeePage {
                         tr.data('data', employee);
                         $('#t-table tbody').append(tr);
                     }
-                    // me.initEvent();
+                    
+                    // Load xong dữ liệu -> ẩn icon loading
+                    setTimeout(function() {
+                        $('#t-load-overlay').hide();
+                    }, 1000)
+
+                    me.initEvent();
                 }
             }
 
         });
 
         
-        // Load xong dữ liệu -> ẩn icon loading
-        setTimeout(function() {
-            $('#t-load-overlay').hide();
-        }, 1000)
-        
-        me.initEvent();
+        // me.initEvent();
     }
 
 
