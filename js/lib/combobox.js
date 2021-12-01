@@ -260,5 +260,3 @@ function itemComboboxOnclick() {
     $(parentItem).hide();
 }
 
-
-

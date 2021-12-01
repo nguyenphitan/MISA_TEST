@@ -1,4 +1,5 @@
-#t-dialog {
+#t-dialog,
+#t-dialog-check-code {
     display: none;
 }
 
@@ -54,13 +55,33 @@
     background-color: #c7c7c7;
 }
 
-.t-dialog-agree {
+.t-dialog-agree,
+.t-btn-agree-check {
     background-color: #2ca01c;
     color: #fff;
 }
 
-.t-dialog-agree:hover {
+.t-dialog-agree:hover,
+.t-btn-agree-check:hover {
     background-color: #35bf22;
+}
+
+/* Dialog check employee code */
+.t-dialog-check-code {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+#t-dialog-check-code .t-dialog-btn {
+    margin-top: 24px;
+    display: flex;
+    justify-content: right;
+    height: 36px;
+}
+
+#t-dialog-check-code .t-btn-agree-check {
+    margin-top: 16px;
 }
 
 

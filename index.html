@@ -202,27 +202,42 @@
                     <br>
                     <!-- Content footer -->
                     <div id="t-content-footer">
-                        <div class="t-total-record">Tổng số: <b id="t-total-record"></b> bản ghi</div>
+                        <div class="t-total-record">Tổng số: <b id="t-total-record-filter"></b> bản ghi</div>
                         <div class="t-record-number">
                             <select name="" id="t-combobox-number">
-                                <option value="10">10 bản ghi trên 1 trang</option>
-                                <option value="20">20 bản ghi trên 1 trang</option>
-                                <option value="30">30 bản ghi trên 1 trang</option>
-                                <option value="50">50 bản ghi trên 1 trang</option>
-                                <option value="100">100 bản ghi trên 1 trang</option>
+                                <option class="t-option-value" value="2">2 bản ghi trên 1 trang</option>
+                                <option class="t-option-value" value="5">5 bản ghi trên 1 trang</option>
+                                <option class="t-option-value" value="10">10 bản ghi trên 1 trang</option>
+                                <option class="t-option-value" value="30">30 bản ghi trên 1 trang</option>
+                                <option class="t-option-value" value="50">50 bản ghi trên 1 trang</option>
                             </select>
 
-                        <div class="t-page-area"> 
-                            <div class="t-page-number t-pre-page t-bold">Trước</div>
-                            <div class="t-list-page">
-                                <div class="t-page-number">1</div>
-                                <div class="t-page-number">2</div>
-                                <div class="t-page-number">3</div>
-                                <div class="t-page-number">...</div>
-                                <div class="t-page-number">89</div>
+                            <!-- <div tcombobox id="t-combobox-number" class="tcombobox t-input-info" value="">
+                                <input type="text" class="t-combobox t-combobox-input" placeholder="10 bản ghi trên 1 trang">
+                                <div id="t-required">Trường bắt buộc</div>
+                                <button tabindex="-1" class="t-combobox-button">
+                                    <i class="t-combobox-extends"></i>
+                                </button>
+                                <div class="t-combobox-data">
+                                    <div class="t-combobox-item" value="2">2 bản ghi trên 1 trang</div>
+                                    <div class="t-combobox-item" value="5">5 bản ghi trên 1 trang</div>
+                                    <div class="t-combobox-item" value="10">10 bản ghi trên 1 trang</div>
+                                    <div class="t-combobox-item" value="30">30 bản ghi trên 1 trang</div>
+                                    <div class="t-combobox-item" value="50">50 bản ghi trên 1 trang</div>
+                                </div>
+                            </div> -->
+
+                            <div class="t-page-area"> 
+                                <div class="t-page-number t-pre-page t-bold">Trước</div>
+                                <div class="t-list-page">
+                                    <!-- <div class="t-page-number">1</div>
+                                    <div class="t-page-number">2</div>
+                                    <div class="t-page-number">3</div>
+                                    <div class="t-page-number">...</div>
+                                    <div class="t-page-number">89</div> -->
+                                </div>
+                                <div class="t-page-number t-next-page t-bold">Sau</div>
                             </div>
-                            <div class="t-page-number t-next-page t-bold">Sau</div>
-                        </div>
                         </div>
                     </div>
                     <!-- End content footer -->
@@ -414,6 +429,28 @@
                     <div class="t-dialog-btn">
                         <button class="t-dialog-cancel t-btn t-bold">Không</button>
                         <button class="t-dialog-agree t-btn t-bold">Có</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End dialog -->
+
+        <!-- Begin dialog -->
+        <div id="t-dialog-check-code">
+            <div id="t-dialog-remove">
+                <div id="t-dialog-container">
+                    <!-- Top -->
+                    <div class="t-dialog-check-code">
+                        <div class="t-div-extends">
+                            <div class="t-warning-icon"></div>
+                        </div>
+                        <div class="t-warning-title">Mã nhân viên <span id="t-code-warning"></span> đã có trong hệ thống, vui lòng kiểm tra lại.</div>
+                    </div>
+
+                    <!-- Bottom -->
+                    <div class="t-dialog-btn">
+                        <!-- <button class="t-dialog-cancel t-btn t-bold">Không</button> -->
+                        <button class="t-btn-agree-check t-btn t-bold">Đồng ý</button>
                     </div>
                 </div>
             </div>

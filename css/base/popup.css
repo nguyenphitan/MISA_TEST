@@ -82,6 +82,10 @@
     margin: 0 auto;
 }
 
+#t-popup .t-info-name {
+    font-weight: bold;
+}
+
 /* Popup info */
 .t-popup-info {
     display: flex;

@@ -235,11 +235,32 @@
     display: flex;
 }
 
+/* Combobox number */
 #t-combobox-number {
     height: 30px;
     margin-right: 8px;
 }
 
+#t-combobox-number .t-combobox-data {
+    position: absolute;
+    /* display: block; */
+    top: -160px;
+}
+
+/* #t-combobox-number:focus {
+    border-color: #35bf22;
+}
+
+#t-combobox-number .t-option-value {
+    height: 30px !important;
+}
+
+#t-combobox-number .t-option-value:focus {
+    background-color: #35bf22;
+} */
+
+
+/*  */
 .t-page-active {
     background-color: #d8d8da;
     border-radius: 4px;
