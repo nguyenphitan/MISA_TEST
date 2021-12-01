@@ -11,11 +11,17 @@ class employeePage {
     constructor() {
         this.maxPageIndexButton = 5;
         this.currentPageIndex = 1;
-        // Load dữ liệu
+        // Load dữ liệu:
         this.loadData();
 
-        // Khởi tạo sự kiện
+        // Khởi tạo sự kiện:
         this.initEvent();
+
+        // Reload dữ liệu của table:
+        this.reloadTableData();
+
+        // Xử lý sự kiện phân trang và tìm kiếm theo tên:
+        this.pagingEvent();
     }
 
     /**
@@ -24,9 +30,6 @@ class employeePage {
      * Version: 1
      */
     initEvent() {
-        // Click btn reload dữ liệu:
-        $('#t-top-content .t-load-btn').click(this.loadData.bind(this));
-
         // Mở popup thêm mới nhân viên:
         $('#t-content .t-btn-add').click(this.openPopup.bind(this));    // Click nút thêm mới nhân viên
         $('#t-overlay .t-close-icon').click(this.closePopup);
@@ -50,6 +53,14 @@ class employeePage {
         // Click chọn giới tính:
         $('.t-select-gender input').on('click', this.handleRadioGender);
 
+    }
+
+    /**
+     * Xử lý sự kiện phân trang và lọc theo họ tên
+     * Author: NPTAN (01/12/2021)
+     * Version: 1
+     */
+    pagingEvent() {
         // Tìm kiếm nhân viên theo họ và tên:
         // Nhập từ khóa muốn tìm kiếm:
         $('#t-input-text').on('blur', this.searchEmployee.bind(this));
@@ -65,6 +76,7 @@ class employeePage {
         // Hiển thị số bản ghi/trang:
         $('#t-content-footer #t-combobox-number').change(this.showRecord.bind(this));
     }
+
 
     // Hiển thị số bản ghi/trang:
     showRecord(sender) {
@@ -92,6 +104,7 @@ class employeePage {
     // }
 
     // Quay lại trang trước đó:
+    
     selectPrevPage(sender) {
         let me = this;
         // Chuyển focus sang button số của trang tương ứng:
@@ -190,15 +203,6 @@ class employeePage {
                 alert('Tạo mã nhân viên không thành công!');
             }
         });
-
-        // Đóng popup:
-        // $('#t-overlay .t-close-icon').click(this.closePopup);
-        // $('#t-overlay .t-popup-cancel').click(this.closePopup);
-        // $('#t-overlay .t-save-only').click(this.closePopup);
-
-        // Click chọn giới tính:
-        // $('.t-select-gender input').on('click', this.handleRadioGender);
-
     }
 
     closePopup(e) {
@@ -240,6 +244,11 @@ class employeePage {
 
     closeDialogWarning() {
         $('#t-dialog').fadeOut(300);
+    }
+
+    // Click btn reload dữ liệu của table:
+    reloadTableData() {
+        $('#t-top-content .t-load-btn').click(this.loadData.bind(this));
     }
 
 
@@ -321,15 +330,7 @@ class employeePage {
                 });
             }
         }
-        // else {
-        //     // console.log('có trường bắt buộc chưa được nhập');
-        //     // // Hiển thị thông báo tại trường input chưa có dữ liệu:
-        //     // let input = InputElement.notValue;
-        //     // $(input).siblings('#t-required').show();
-            
-        // }
-        
-        
+       
     }
 
     /**
@@ -486,7 +487,7 @@ class employeePage {
                         $('#t-load-overlay').hide();
                     }, 1000)
 
-                    // me.initEvent();
+                    me.initEvent();
                 }
             }
 
@@ -570,7 +571,7 @@ class employeePage {
                     //     $('#t-load-overlay').hide();
                     // }, 1000)
 
-                    // me.initEvent();
+                    me.initEvent();
                 }
             }
 
@@ -632,5 +633,3 @@ class employeePage {
 
 
 }
-
-
