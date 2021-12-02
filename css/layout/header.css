@@ -67,17 +67,11 @@
 }
 
 .t-user .t-user-avatar {
-    width: 24px;
-    height: 24px;
-    background: url('../../content/img/Sprites.64af8f61.svg') no-repeat -608px -1140px;
-    /* background-size: 32px 32px; */
+    width: 32px;
+    height: 32px;
+    background: url('../../content/img/Sprites.64af8f61.svg') no-repeat -352px -894px;
     border-radius: 50%;
     margin-right: 8px;
-}
-
-.t-user-avatar svg {
-    /* width: 14px;
-    height: 14px; */
 }
 
 .t-user .t-user-name {

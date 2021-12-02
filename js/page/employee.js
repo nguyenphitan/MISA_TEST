@@ -56,7 +56,7 @@ class employeePage {
 
         // Tìm kiếm nhân viên theo họ và tên:
         // Nhập từ khóa muốn tìm kiếm:
-        // $('#t-input-text').on('blur', this.searchEmployee.bind(this));
+        $('#t-input-text').on('blur', this.searchEmployee.bind(this));
 
         // Nhấn icon tìm kiếm:
         $('.t-input-filter .t-icon-search').click(this.searchEmployee.bind(this));
@@ -136,12 +136,14 @@ class employeePage {
 
     // Tìm kiếm theo họ và tên:
     searchEmployee(sender) {
-        let me = this;
-        me.currentPageIndex = 1;
         let inputSearch = sender.target;    // Lấy ra thẻ input hiện tại
-        this.currentPageIndex = 1;  // Sau mỗi lần tìm kiếm, set lại trang hiện tại là trang 1
-        this.loadDataFilter(me.currentPageIndex);
-        this.initEventRenderElement();
+        if($(inputSearch).val() == '') {
+            let me = this;
+            me.currentPageIndex = 1;
+            this.currentPageIndex = 1;  // Sau mỗi lần tìm kiếm, set lại trang hiện tại là trang 1
+            this.loadDataFilter(me.currentPageIndex);
+            this.initEventRenderElement();
+        }
     }
 
     // Ấn enter để tìm kiếm:
