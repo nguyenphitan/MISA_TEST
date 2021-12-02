@@ -12,7 +12,7 @@ class employeePage {
         this.maxPageIndexButton = 5;
         this.currentPageIndex = 1;
         // Load dữ liệu:
-        this.loadData();
+        this.loadDataFilter();
         
         // Khởi tạo sự kiện:
         this.initEvent();
@@ -41,7 +41,7 @@ class employeePage {
         // Click sửa thông tin nhân viên:
         $('#t-content .t-employee-function .t-function-name').on('click', this.changeData.bind(this));
 
-        // Sự kiện click vào nút sửa trên bản ghi (Hộp chức năng):
+        // Sự kiện click vào mũi tên trên hộp chức năng:
         $('#t-table-content .t-function-extend').click(this.openFunctionBox);
         
         // Click vào nút xóa bản ghi:
@@ -97,6 +97,7 @@ class employeePage {
     showRecord(sender) {
         let me = this;
         me.loadDataFilter(me.currentPageIndex);
+        me.initEventBonus();
     }
 
     // Chuyển tới trang bất kì được click:
@@ -119,7 +120,6 @@ class employeePage {
     }
 
     // Quay lại trang trước đó:
-    
     selectPrevPage(sender) {
         let me = this;
         // Chuyển focus sang button số của trang tương ứng:
@@ -163,12 +163,10 @@ class employeePage {
         // console.log(inputSearch.target);
 
         let inputSearch = sender.target;    // Lấy ra thẻ input hiện tại
-        if($(inputSearch).val() != '') {
-            this.loadDataFilter();
-        }
-        else {
-            this.loadData();
-        }
+        this.currentPageIndex = 1;  // Sau mỗi lần tìm kiếm, set lại trang hiện tại là trang 1
+        this.loadDataFilter();
+        this.initEventBonus();
+
     }
 
     // Mở/Đóng hộp chức năng:
@@ -206,12 +204,12 @@ class employeePage {
         // Auto tạo mã nhân viên mới:
         $.ajax({
             type: "GET",
-            url: "http://cukcuk.manhnv.net/api/v1/Employees/NewEmployeeCode",
-            async: false,
+            url: "http://amis.manhnv.net/api/v1/Employees/NewEmployeeCode",
+            // async: false,
             success: function (response) {
                 if(response) {
                     const employeeCode = response;
-                    $('.t-code-info input').val(employeeCode);
+                    $('.t-code-info input').val(employeeCode).focus();
                 }
             },
             error: function(reject) {
@@ -265,7 +263,7 @@ class employeePage {
     reloadTableData(sender) {
         // $('#t-top-content .t-load-btn').click(this.loadData.bind(this));
         let me = this;
-        this.loadData();
+        this.loadDataFilter();
         me.initEventBonus();
     }
 
@@ -273,7 +271,6 @@ class employeePage {
     closeWarningCode() {
         $('#t-dialog-check-code').fadeOut(300);
     }
-
 
     /**
      * Thêm mới nhân viên
@@ -312,7 +309,7 @@ class employeePage {
                     // Build vào object hiện tại
                     employee[fieldName] = value;
                 }
-                // debugger
+                debugger
             }
 
             // Gọi đến api cất dữ liệu:
@@ -320,14 +317,15 @@ class employeePage {
                 // debugger
                 $.ajax({
                     type: "POST",
-                    url: "http://cukcuk.manhnv.net/api/v1/Employees",
-                    async: false,
+                    url: "http://amis.manhnv.net/api/v1/Employees",
+                    // async: false,
                     data: JSON.stringify(employee),
                     dataType: "json",
                     contentType: "application/json",
                     success: function (response) {
                         // Load lại dữ liệu:
-                        me.loadData();
+                        me.loadDataFilter();
+                        me.initEventBonus();
                         // debugger
                         // Ẩn popup:
                         $('#t-overlay').fadeOut(300);
@@ -345,14 +343,15 @@ class employeePage {
                 // debugger
                 $.ajax({
                     type: "PUT",
-                    url: `http://cukcuk.manhnv.net/api/v1/Employees/${me.idSelected}`,
-                    async: false,
+                    url: `http://amis.manhnv.net/api/v1/Employees/${me.idSelected}`,
+                    // async: false,
                     data: JSON.stringify(employee),
                     dataType: "json",
                     contentType: "application/json",
                     success: function (response) {
                         // Load lại dữ liệu
-                        me.loadData();
+                        me.loadDataFilter()
+                        me.initEventBonus();
                         // debugger
                         // Ẩn popup
                         $('#t-overlay').fadeOut(300);
@@ -367,12 +366,10 @@ class employeePage {
                 });
             }
 
-            me.initEventBonus();
+            // me.initEventBonus();
         }
        
     }
-
-
 
     /**
      * Sửa thông tin nhân viên
@@ -402,7 +399,7 @@ class employeePage {
 
         $.ajax({
             type: "GET",
-            url: `http://cukcuk.manhnv.net/api/v1/Employees/${employeeId}`,
+            url: `http://amis.manhnv.net/api/v1/Employees/${employeeId}`,
             async: false,
             success: function (employee) {
                 // Bind dữ liệu vào form:
@@ -442,10 +439,10 @@ class employeePage {
         // Gọi đến api xóa bản ghi:
         $.ajax({
             type: "DELETE",
-            url: `http://cukcuk.manhnv.net/api/v1/Employees/${me.idSelected}`,
+            url: `http://amis.manhnv.net/api/v1/Employees/${me.idSelected}`,
             async: false,
             success: function (response) {
-                me.loadData();
+                me.loadDataFilter();
                 me.closeDialogWarning();
             }
         });
@@ -471,85 +468,6 @@ class employeePage {
 
 
     /**
-     * Hàm load dữ liệu từ API (Dữ liệu không có filter. Phải xử lý như thế này vì khi lọc dữ liệu bắt buộc phải chuyền vào text khác null)
-     * Author: NPTAN (29/11/2021)
-     * Version: 1
-     */
-    loadData() {
-
-        let me = this;
-        // Clear dữ liệu cũ:
-        $('#t-table tbody').empty();
-        // Hiện icon loading
-        $('#t-load-overlay').show();
-
-        // Gọi đến api để lấy dữ liệu:
-        $.ajax({
-            type: "GET",
-            url: "http://cukcuk.manhnv.net/api/v1/Employees",
-            async: false,
-            success: function (response) {
-                if(response) {
-                    let employees = response;
-                    // Duyệt từng từng nhân viên có trong mảng:
-                    for (const employee of employees) {
-                        // Build các tr và append vào table:
-                        let tr = $(`<tr class="t-row-table">
-                            <td class="t-checkbox t-col-border t-padding-10"> <input type="checkbox" name="" id=""> </td>
-                            <td class="t-employee-code t-col-border t-padding-10">${employee.EmployeeCode || ''}</td>
-                            <td class="t-employee-name t-col-border t-padding-10">${employee.FullName || ''}</td>
-                            <td class="t-employee-gender t-col-border t-padding-10 t-align-center">${employee.GenderName || ''}</td>
-                            <td class="t-employee-date t-col-border t-padding-10 t-align-center">${CommnonJS.formatDateDDMMYYYY(employee.DateOfBirth) || ''}</td>
-                            <td class="t-employee-cmnd t-col-border t-padding-10">${employee.IdentityNumber || ''}</td>
-                            <td class="t-employee-position t-col-border t-padding-10">${employee.PositionName || ''}</td>
-                            <td class="t-employee-unit t-col-border t-padding-10">${employee.DepartmentName || ''}</td>
-                            <td class="t-employee-account-number t-col-border t-padding-10">${''}</td>
-                            <td class="t-employee-bank t-col-border t-padding-10">${''}</td>
-                            <td class="t-employee-branch t-col-border t-padding-10">${employee.Address || ''}</td>
-                            <td class="t-employee-function t-border-bottom t-padding-10 t-align-center">
-                                <div class="t-function-btn">
-                                    <div class="t-function-name t-mg-right-4">Sửa</div>
-                                    <div class="t-function-extend">
-                                        <div class="t-function-box">
-                                            <div class="t-box-item">Nhân bản</div>
-                                            <div class="t-box-item t-function-remove">Xóa</div>
-                                            <div class="t-box-item">Ngừng sử dụng</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>`);
-
-                        // Lưu trữ khóa chính của mỗi row của table
-                        tr.data('employeeId', employee.EmployeeId);
-                        tr.data('data', employee);
-                        $('#t-table tbody').append(tr);
-                    }
-                    
-                    // Hiển thị số bản ghi và danh sách bản ghi:
-                    $('#t-content-footer .t-list-page').empty();
-                    $('#t-total-record-filter').text(`${employees.length}`);
-                    $('#t-content-footer .t-list-page').append(`<div class="t-page-number">1</div>
-                                                                <div class="t-page-number">2</div>
-                                                                <div class="t-page-number">3</div>
-                                                                <div class="t-page-number">...</div>
-                                                                <div class="t-page-number">89</div>`);
-
-                    // Load xong dữ liệu -> ẩn icon loading
-                    setTimeout(function() {
-                        $('#t-load-overlay').hide();
-                    }, 1000)
-
-                    
-                }
-            }
-
-        });
-
-    }
-
-
-    /**
      * Hàm load dữ liệu từ API đã được lọc theo input
      * Author: NPTAN (30/11/2021)
      * Version: 1
@@ -560,7 +478,7 @@ class employeePage {
         // Clear dữ liệu cũ:
         $('#t-table tbody').empty();
         // Hiện icon loading
-        // $('#t-load-overlay').show();
+        $('#t-load-overlay').show();
 
         // Lấy các thông tin thực hiện phân trang:
         let searchText = $('#t-input-text').val();
@@ -569,9 +487,7 @@ class employeePage {
             pageNumber = 1;
         }
         searchText = (searchText ? searchText : '');
-        let apiUrl = `http://cukcuk.manhnv.net/api/v1/Employees/Filter?pageSize=${pageSize}&pageNumber=${pageNumber}&fullName=${searchText}`;
-        // debugger
-
+        let apiUrl = `http://amis.manhnv.net/api/v1/Employees/filter?pageSize=${pageSize}&pageNumber=${pageNumber}&employeeFilter=${searchText}`;
 
         let data = [];
         // Gọi đến api để lấy dữ liệu:
@@ -581,7 +497,6 @@ class employeePage {
             async: false,
             success: function (response) {
                 if(response) {
-                    // debugger
                     data = response;
                     let employees = response;
                     // Duyệt từng từng nhân viên có trong mảng:
@@ -590,15 +505,15 @@ class employeePage {
                         let tr = $(`<tr class="t-row-table">
                             <td class="t-checkbox t-col-border t-padding-10"> <input type="checkbox" name="" id=""> </td>
                             <td class="t-employee-code t-col-border t-padding-10">${employee.EmployeeCode || ''}</td>
-                            <td class="t-employee-name t-col-border t-padding-10">${employee.FullName || ''}</td>
+                            <td class="t-employee-name t-col-border t-padding-10">${employee.EmployeeName || ''}</td>
                             <td class="t-employee-gender t-col-border t-padding-10 t-align-center">${employee.GenderName || ''}</td>
                             <td class="t-employee-date t-col-border t-padding-10 t-align-center">${CommnonJS.formatDateDDMMYYYY(employee.DateOfBirth) || ''}</td>
                             <td class="t-employee-cmnd t-col-border t-padding-10">${employee.IdentityNumber || ''}</td>
-                            <td class="t-employee-position t-col-border t-padding-10">${employee.PositionName || ''}</td>
+                            <td class="t-employee-position t-col-border t-padding-10">${employee.EmployeePosition || ''}</td>
                             <td class="t-employee-unit t-col-border t-padding-10">${employee.DepartmentName || ''}</td>
-                            <td class="t-employee-account-number t-col-border t-padding-10">${''}</td>
-                            <td class="t-employee-bank t-col-border t-padding-10">${''}</td>
-                            <td class="t-employee-branch t-col-border t-padding-10">${employee.Address || ''}</td>
+                            <td class="t-employee-account-number t-col-border t-padding-10">${employee.BankAccountNumber || ''}</td>
+                            <td class="t-employee-bank t-col-border t-padding-10">${employee.BankName || ''}</td>
+                            <td class="t-employee-branch t-col-border t-padding-10">${employee.BankBranchName || ''}</td>
                             <td class="t-employee-function t-border-bottom t-padding-10 t-align-center">
                                 <div class="t-function-btn">
                                     <div class="t-function-name t-mg-right-4">Sửa</div>
@@ -623,8 +538,7 @@ class employeePage {
                     setTimeout(function() {
                         $('#t-load-overlay').hide();
                     }, 1000)
-
-                    
+ 
                 }
             }
 
@@ -636,7 +550,6 @@ class employeePage {
         const totalPage = data.TotalPage;   // Tổng số trang
         $('#t-total-record-filter').text(totalRecord);
 
-        // console.log(me.maxPageIndexButton);
         // Tính toán việc hiển thị số trang Pagingbar
         // Nếu tổng số trang lớn hơn số button trang hiển thị trên giao diện -> render ra 5 button
         // Nếu nhỏ hơn số button trang hiển thị trên giao diện -> render ra totalPage button
@@ -672,12 +585,15 @@ class employeePage {
                 }
                 $('#t-content-footer .t-list-page').append(buttonHTML);
                 startButton++;
-                // debugger
             }
         }
         else {
             for(let i = 0 ; i < totalPage ; i++) {
-                let buttonHTML = `<div class="t-page-number">${i+1}</div>`;
+                let buttonHTML = $(`<div class="t-page-number">${i+1}</div>`);
+                buttonHTML.data('value', i+1);  // Set value cho mỗi button
+                if(me.currentPageIndex == i+1) {
+                    buttonHTML.addClass('t-page-active');
+                }
                 $('#t-content-footer .t-list-page').append(buttonHTML);
             }
         }

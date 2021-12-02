@@ -83,6 +83,16 @@
 
 
 /* Content table */
+#t-table thead {
+    /* position: relative; */
+}
+
+#t-table thead .t-row-table {
+    /* position: fixed; */
+
+}
+
+
 #t-table-content {
     margin: 16px 8px;
     font-size: 12px;

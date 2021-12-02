@@ -193,7 +193,22 @@
                             <!-- End thead -->
 
                             <!-- tbody -->
-                            <tbody></tbody>
+                            <tbody>
+                                <tr class="t-row-table">
+                                    <!-- <td class="t-employee-function t-border-bottom t-padding-10 t-align-center">
+                                        <div class="t-function-btn">
+                                            <div class="t-function-name t-mg-right-4">Sửa</div>
+                                            <div class="t-function-extend">
+                                                <div class="t-function-box">
+                                                    <div class="t-box-item">Nhân bản</div>
+                                                    <div class="t-box-item t-function-remove">Xóa</div>
+                                                    <div class="t-box-item">Ngừng sử dụng</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td> -->
+                                </tr>
+                            </tbody>
                             <!-- End tbody -->
                         </table>
                         <!-- End table -->
@@ -205,9 +220,9 @@
                         <div class="t-total-record">Tổng số: <b id="t-total-record-filter"></b> bản ghi</div>
                         <div class="t-record-number">
                             <select name="" id="t-combobox-number">
-                                <option class="t-option-value" value="2">2 bản ghi trên 1 trang</option>
                                 <option class="t-option-value" value="5">5 bản ghi trên 1 trang</option>
                                 <option class="t-option-value" value="10">10 bản ghi trên 1 trang</option>
+                                <option class="t-option-value" value="20">20 bản ghi trên 1 trang</option>
                                 <option class="t-option-value" value="30">30 bản ghi trên 1 trang</option>
                                 <option class="t-option-value" value="50">50 bản ghi trên 1 trang</option>
                             </select>
@@ -288,7 +303,7 @@
                                     </div>
                                     <div class="t-name-info t-relative">
                                         <div class="t-info-name">Tên <span class="t-color-red">*</span></div>
-                                        <input class="t-input t-input-info" required constraint="required" type="name" fieldName="FullName">
+                                        <input class="t-input t-input-info" required constraint="required" type="name" fieldName="EmployeeName">
                                         <div id="t-required">Trường bắt buộc</div>
                                     </div>
                                 </div>
@@ -296,7 +311,7 @@
                                     <div class="t-department-info t-relative">
                                         <div class="t-info-name">Đơn vị <span class="t-color-red">*</span></div>
                                         <!-- <input class="t-input t-input-info t-w-100" type="text" fieldName="DepartmentName"> -->
-                                        <combobox id="t-employeeDepartmentId-txt" required constraint="required" fieldName="DepartmentId" api="http://cukcuk.manhnv.net/api/v1/Departments" propertyDisplay="DepartmentName" propertyValue="DepartmentId">
+                                        <combobox id="t-employeeDepartmentId-txt" required constraint="required" fieldName="DepartmentId" api="http://amis.manhnv.net/api/v1/Departments" propertyDisplay="DepartmentName" propertyValue="DepartmentId">
 
                                         </combobox>
                                     </div>
@@ -304,10 +319,10 @@
                                 <div class="t-row t-mg-bottom-12">
                                     <div class="t-position-info t-relative">
                                         <div class="t-info-name">Chức danh </div>
-                                        <!-- <input class="t-input t-input-info t-w-100" type="text" fieldName="PositionName"> -->
-                                        <combobox id="t-employeePositionId-txt" constraint="required" fieldName="PositionId" api="http://cukcuk.manhnv.net/api/v1/Positions" propertyDisplay="PositionName" propertyValue="PositionId">
+                                        <input class="t-input t-input-info t-w-100" required constraint="required" type="text" fieldName="EmployeePosition">
+                                        <!-- <combobox id="t-employeePositionId-txt" constraint="required" fieldName="PositionId" api="http://amis.manhnv.net/api/v1/Positions" propertyDisplay="EmployeePosition" propertyValue="PositionId">
 
-                                        </combobox>
+                                        </combobox> -->
 
                                     </div>
                                 </div>
@@ -369,7 +384,7 @@
                                 </div>
                                 <div class="t-telephone-info">
                                     <div class="t-info-name">Điện thoại cố định</div>
-                                    <input class="t-input t-input-info t-mg-right-6" type="text" fieldName="">
+                                    <input class="t-input t-input-info t-mg-right-6" type="text" fieldName="TelephoneNumber">
                                 </div>
                                 <div class="t-email-info">
                                     <div class="t-info-name">Email</div>
@@ -380,15 +395,15 @@
                             <div class="t-row t-mg-bottom-12 t-flex">
                                 <div class="t-account-info">
                                     <div class="t-info-name">Tài khoản ngân hàng</div>
-                                    <input class="t-input t-input-info t-mg-right-6" type="text" fieldName="">
+                                    <input class="t-input t-input-info t-mg-right-6" type="text" fieldName="BankAccountNumber">
                                 </div>
                                 <div class="t-bank-info">
                                     <div class="t-info-name">Tên ngân hàng</div>
-                                    <input class="t-input t-input-info t-mg-right-6" type="text" fieldName="">
+                                    <input class="t-input t-input-info t-mg-right-6" type="text" fieldName="BankName">
                                 </div>
                                 <div class="t-branch-info">
                                     <div class="t-info-name">Chi nhánh</div>
-                                    <input class="t-input t-input-info t-203px" type="text" fieldName="">
+                                    <input class="t-input t-input-info t-203px" type="text" fieldName="BankBranchName">
                                 </div>
                             </div>
                         </div>
