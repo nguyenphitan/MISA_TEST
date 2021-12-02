@@ -72,7 +72,7 @@ class employeePage {
         
         // Hiển thị số bản ghi/trang bằng phím enter:
         $('#t-content-footer #t-combobox-number').keyup(this.showRecord.bind(this));
-        // Hiển thị số bản ghi/trang bằng click chuột:
+        // // Hiển thị số bản ghi/trang bằng click chuột:
         $('#t-content-footer #t-combobox-number .t-combobox-data .t-combobox-item').click(this.showRecordByMouse.bind(this));
     }
 
@@ -92,6 +92,12 @@ class employeePage {
         $('#t-table-content .t-function-remove').on('click', this.openDialogWarning.bind(this));
         $('#t-dialog .t-dialog-cancel').click(this.closeDialogWarning);
         $('#t-dialog .t-dialog-agree').click(this.delete.bind(this));
+
+        // Hiển thị số bản ghi/trang bằng click chuột:
+        $('#t-content-footer #t-combobox-number .t-combobox-data .t-combobox-item').click(this.showRecordByMouse.bind(this));
+        
+        // Reset tất cả các trạng thái hover của item chọn số bản ghi/trang:
+        $('#t-content-footer #t-combobox-number .t-combobox-data .t-combobox-item').hover(this.resetHoverItem.bind(this));
     }
 
     // Hiển thị số bản ghi/trang bằng phím enter:
@@ -103,12 +109,21 @@ class employeePage {
             me.initEventRenderElement();
         }
     }
+
     // Hiển thị số bản ghi/trang bằng click chuột:
     showRecordByMouse() {
         let me = this;
         me.currentPageIndex = 1;
         me.loadDataFilter(me.currentPageIndex);
         me.initEventRenderElement();
+    }
+
+    // Reset hover của các item chọn số bản ghi/trang:
+    resetHoverItem(e) {
+        let items = $(e.target).siblings('.t-combobox-item');
+        for (const item of items) {
+            $(item).removeClass('t-combobox-item-hover');
+        }
     }
 
     // Quay lại trang trước đó:
