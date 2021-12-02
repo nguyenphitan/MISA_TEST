@@ -92,9 +92,6 @@ class employeePage {
         $('#t-table-content .t-function-remove').on('click', this.openDialogWarning.bind(this));
         $('#t-dialog .t-dialog-cancel').click(this.closeDialogWarning);
         $('#t-dialog .t-dialog-agree').click(this.delete.bind(this));
-
-        // Hiển thị số bản ghi/trang bằng click chuột:
-        $('#t-content-footer #t-combobox-number .t-combobox-data .t-combobox-item').click(this.showRecordByMouse.bind(this));
         
         // Reset tất cả các trạng thái hover của item chọn số bản ghi/trang:
         $('#t-content-footer #t-combobox-number .t-combobox-data .t-combobox-item').hover(this.resetHoverItem.bind(this));
