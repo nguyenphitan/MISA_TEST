@@ -71,7 +71,8 @@ class employeePage {
         $('#t-content-footer .t-next-page').click(this.selectNextPage.bind(this));
         
         // Hiển thị số bản ghi/trang:
-        $('#t-content-footer #t-combobox-number').change(this.showRecord.bind(this));
+        $('#t-content-footer #t-combobox-number').keyup(this.showRecord.bind(this));
+        // $('#t-content-footer #t-combobox-number .t-combobox-data').click(this.showRecordByMouse.bind(this));
     }
 
     /**
@@ -93,12 +94,22 @@ class employeePage {
     }
 
     // Hiển thị số bản ghi/trang:
-    showRecord(sender) {
-        let me = this;
-        me.currentPageIndex = 1;
-        me.loadDataFilter(me.currentPageIndex);
-        me.initEventRenderElement();
+    showRecord(e) {
+        if(e.keyCode == 13) {
+            let me = this;
+            me.currentPageIndex = 1;
+            me.loadDataFilter(me.currentPageIndex);
+            me.initEventRenderElement();
+        }
     }
+
+    // showRecordByMouse() {
+    //     let me = this;
+    //     me.currentPageIndex = 1;
+    //     me.loadDataFilter(me.currentPageIndex);
+    //     me.initEventRenderElement();
+    // }
+
 
     // Quay lại trang trước đó:
     selectPrevPage(sender) {
@@ -416,12 +427,25 @@ class employeePage {
 
         // Lấy các thông tin thực hiện phân trang:
         let searchText = $('#t-input-text').val();
-        const pageSize = $('#t-combobox-number').val();    // Số bản ghi/trang
+        let value = $('#t-combobox-number').val();  // Số bản ghi/trang
+        let pageSize = 0;
+        if(value) {
+            pageSize = value; 
+        }
+        else {
+            pageSize = 10;
+        }
         if( !pageNumber ) {
             pageNumber = 1;
         }
         searchText = (searchText ? searchText : '');
         let apiUrl = `http://amis.manhnv.net/api/v1/Employees/filter?pageSize=${pageSize}&pageNumber=${pageNumber}&employeeFilter=${searchText}`;
+
+        // Gán lại thông tin số bản ghi đã được hiện lên table:
+        let text = $('#t-content-footer .t-combobox-input').val();
+        if(text) {
+            $('#t-content-footer .t-combobox-input').attr('placeholder', text);
+        }
 
         let data = [];
         // Gọi đến api để lấy dữ liệu:

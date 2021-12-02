@@ -182,6 +182,7 @@ function inputComboboxOnKeyDown() {
                 // comboboxElement.attr("value", value);
                 // Cách 2: gán vào data của element
                 comboboxElement.val(value);    
+                // debugger
 
                 // Ẩn conbobox data
                 $(parentItem).hide();
