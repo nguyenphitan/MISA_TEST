@@ -255,7 +255,7 @@ function itemComboboxOnclick() {
     // Cách 1: thực hiện lưu value vào attribute của element
     comboboxElement.attr("value", value);
     // Cách 2: gán vào data của element
-    comboboxElement.data("value", value);    
+    comboboxElement.val(value);    
 
     // Ẩn conbobox data
     $(parentItem).hide();

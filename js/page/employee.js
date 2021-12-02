@@ -70,9 +70,10 @@ class employeePage {
         // 2. Click chuyển tới trang tiếp theo:
         $('#t-content-footer .t-next-page').click(this.selectNextPage.bind(this));
         
-        // Hiển thị số bản ghi/trang:
+        // Hiển thị số bản ghi/trang bằng phím enter:
         $('#t-content-footer #t-combobox-number').keyup(this.showRecord.bind(this));
-        // $('#t-content-footer #t-combobox-number .t-combobox-data').click(this.showRecordByMouse.bind(this));
+        // Hiển thị số bản ghi/trang bằng click chuột:
+        $('#t-content-footer #t-combobox-number .t-combobox-data .t-combobox-item').click(this.showRecordByMouse.bind(this));
     }
 
     /**
@@ -93,7 +94,7 @@ class employeePage {
         $('#t-dialog .t-dialog-agree').click(this.delete.bind(this));
     }
 
-    // Hiển thị số bản ghi/trang:
+    // Hiển thị số bản ghi/trang bằng phím enter:
     showRecord(e) {
         if(e.keyCode == 13) {
             let me = this;
@@ -102,14 +103,13 @@ class employeePage {
             me.initEventRenderElement();
         }
     }
-
-    // showRecordByMouse() {
-    //     let me = this;
-    //     me.currentPageIndex = 1;
-    //     me.loadDataFilter(me.currentPageIndex);
-    //     me.initEventRenderElement();
-    // }
-
+    // Hiển thị số bản ghi/trang bằng click chuột:
+    showRecordByMouse() {
+        let me = this;
+        me.currentPageIndex = 1;
+        me.loadDataFilter(me.currentPageIndex);
+        me.initEventRenderElement();
+    }
 
     // Quay lại trang trước đó:
     selectPrevPage(sender) {
