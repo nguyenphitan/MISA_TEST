@@ -16,7 +16,6 @@ class employeePage {
         
         // Khởi tạo sự kiện:
         this.initEvent();
-       
     }
 
     /**
@@ -57,29 +56,30 @@ class employeePage {
 
         // Tìm kiếm nhân viên theo họ và tên:
         // Nhập từ khóa muốn tìm kiếm:
-        $('#t-input-text').on('blur', this.searchEmployee.bind(this));
+        // $('#t-input-text').on('blur', this.searchEmployee.bind(this));
+
+        // Nhấn icon tìm kiếm:
+        $('.t-input-filter .t-icon-search').click(this.searchEmployee.bind(this));
+
+        // Focus vào input tìm kiếm và nhấn enter để tìm kiếm:
+        $('.t-input-filter #t-input-text').keyup(this.enterSearchText.bind(this));
 
         // Click chuyển trang:
         // 1. Click chuyển tới trang trước đó:
         $('#t-content-footer .t-pre-page').click(this.selectPrevPage.bind(this));
         // 2. Click chuyển tới trang tiếp theo:
         $('#t-content-footer .t-next-page').click(this.selectNextPage.bind(this));
-        // 3. Chuyển tới trang bất kì được click:
-        // $('#t-content-footer .t-page-number').on('click', this.selectClickPage.bind(this));
-
+        
         // Hiển thị số bản ghi/trang:
         $('#t-content-footer #t-combobox-number').change(this.showRecord.bind(this));
-
     }
-
 
     /**
      * Khởi tạo sự kiện cho các phần tử được render sau:
      * Author: NPTAN (01/12/2021)
      * Version: 1
      */
-    initEventBonus() {
-        // console.log(this);
+    initEventRenderElement() {
         // Click sửa thông tin nhân viên:
         $('#t-content .t-employee-function .t-function-name').on('click', this.changeData.bind(this));
 
@@ -92,31 +92,12 @@ class employeePage {
         $('#t-dialog .t-dialog-agree').click(this.delete.bind(this));
     }
 
-
     // Hiển thị số bản ghi/trang:
     showRecord(sender) {
         let me = this;
+        me.currentPageIndex = 1;
         me.loadDataFilter(me.currentPageIndex);
-        me.initEventBonus();
-    }
-
-    // Chuyển tới trang bất kì được click:
-    selectClickPage(sender) {
-        let me = this;
-        // Duyệt các phần tử cùng cấp, xóa class active của các phần tử đó:
-        let pages = $(sender.target).siblings('.t-page-number');
-        for (const page of pages) {
-            $(page).removeClass('t-page-active');
-        }
-
-        // Thêm class active cho page hiện tại (page được click):
-        $(sender.target).addClass('t-page-active');
-        
-        // Lấy ra giá trị của button:
-        let value = $(sender.target).data('value');
-        // alert(value);
-        me.currentPageIndex = value;
-        me.loadDataFilter(value);
+        me.initEventRenderElement();
     }
 
     // Quay lại trang trước đó:
@@ -125,7 +106,6 @@ class employeePage {
         // Chuyển focus sang button số của trang tương ứng:
         // Xác định button của trang hiện tại, xóa class avtive của nó:
         let currentPage = $(sender.target).siblings('.t-list-page').children().filter('.t-page-active');
-        // console.log(currentPage);
         $(currentPage).removeClass('t-page-active');
         // Xác định button tiếp theo, thêm class active cho nó:
         let prevPage = $(currentPage).prev();
@@ -133,10 +113,8 @@ class employeePage {
 
         // Lấy ra giá trị của button:
         let value = $(prevPage).data('value');
-        // alert(value);
         me.currentPageIndex = value;
         me.loadDataFilter(value);
-
     }
 
     // Chuyển tới trang tiếp theo:
@@ -145,7 +123,6 @@ class employeePage {
         // Chuyển focus sang button số của trang tương ứng:
         // Xác định button của trang hiện tại, xóa class avtive của nó:
         let currentPage = $(sender.target).siblings('.t-list-page').children().filter('.t-page-active');
-        // console.log(currentPage);
         $(currentPage).removeClass('t-page-active');
         // Xác định button tiếp theo, thêm class active cho nó:
         let nextPage = $(currentPage).next();
@@ -153,52 +130,49 @@ class employeePage {
 
         // Lấy ra giá trị của button:
         let value = $(nextPage).data('value');
-        // alert(value);
         me.currentPageIndex = value;
         me.loadDataFilter(value);
     }
 
     // Tìm kiếm theo họ và tên:
     searchEmployee(sender) {
-        // console.log(inputSearch.target);
-
+        let me = this;
+        me.currentPageIndex = 1;
         let inputSearch = sender.target;    // Lấy ra thẻ input hiện tại
         this.currentPageIndex = 1;  // Sau mỗi lần tìm kiếm, set lại trang hiện tại là trang 1
-        this.loadDataFilter();
-        this.initEventBonus();
+        this.loadDataFilter(me.currentPageIndex);
+        this.initEventRenderElement();
+    }
 
+    // Ấn enter để tìm kiếm:
+    enterSearchText(e) {
+        let me = this;
+        if(e.keyCode == 13) {
+            me.currentPageIndex = 1;
+            this.currentPageIndex = 1;  // Sau mỗi lần tìm kiếm, set lại trang hiện tại là trang 1
+            this.loadDataFilter(me.currentPageIndex);
+            this.initEventRenderElement();
+        }
     }
 
     // Mở/Đóng hộp chức năng:
     openFunctionBox(e) {
-        // console.log(e.target);
-        // console.log(this);
-        // console.log($(e.target).children());
-
         // Mở hộp chức năng:
         $(e.target).children().fadeToggle(300);
-
-        // Đóng hộp chức năng:
-        // let functionItem = $(e.target).children();
-        // functionItem.on('click', function() {
-        //     $(funcionItem).hide();
-        // })
-
     }
 
     // Mở/Đóng popup thêm mới nhân viên:
     openPopup(e) {
         // Reset tất cả các input
-        // let inputs = $('#t-overlay .t-popup-content input');
-        // for (const input of inputs) {
-        //     $(input).val(unset);
-        // }
-        // debugger
-
+        let inputs = $('#t-overlay .t-popup-content input');
+        for (const input of inputs) {
+            if($(input).attr('type') != 'radio') {
+                $(input).val(null);
+            }
+        }
         
         let me = this;
         me.FormMode = Enum.FormMode.Add;
-
         $('#t-overlay').fadeIn(300);
 
         // Auto tạo mã nhân viên mới:
@@ -219,21 +193,7 @@ class employeePage {
     }
 
     closePopup(e) {
-        // console.log(e.target);
         $('#t-overlay').fadeOut(300);
-
-        // Reset tất cả các input
-        let inputs = $('#t-overlay .t-popup-content input');
-        for (const input of inputs) {
-            $(input).val(unset);    // Gán về giá trị value mặc định ban đầu
-        }
-
-        // Reset tất cả các combobox
-        let comboboxs = $('#t-popup div[tcombobox]');
-        for (const combobox of comboboxs) {
-            $(combobox).val(unset)
-            // debugger
-        }
     }
 
     // Mở/Đóng dialog warning:
@@ -246,7 +206,6 @@ class employeePage {
         let code = $(currentRecord).children('.t-employee-code').text();
         this.idSelected = employeeId;
         // this.nameSelected = fullName;
-        // debugger
 
         // Build dữ liệu cho dialog:
         $('#t-name-remove').text(`<${code}>`);
@@ -261,10 +220,9 @@ class employeePage {
 
     // Click btn reload dữ liệu của table:
     reloadTableData(sender) {
-        // $('#t-top-content .t-load-btn').click(this.loadData.bind(this));
         let me = this;
         this.loadDataFilter();
-        me.initEventBonus();
+        me.initEventRenderElement();
     }
 
     // Click ẩn thông báo trùng mã nhân viên:
@@ -295,10 +253,8 @@ class employeePage {
                     // Build object employee:
                     employee[fieldName] = value;
                 }
-                // debugger
             }
-            // return;
-
+    
             // Duyệt các combobox
             // Lấy ra value hiện tại
             let comboboxs = $('#t-popup div[tcombobox]');
@@ -309,12 +265,10 @@ class employeePage {
                     // Build vào object hiện tại
                     employee[fieldName] = value;
                 }
-                debugger
             }
 
             // Gọi đến api cất dữ liệu:
             if(me.FormMode == Enum.FormMode.Add) {
-                // debugger
                 $.ajax({
                     type: "POST",
                     url: "http://amis.manhnv.net/api/v1/Employees",
@@ -325,13 +279,12 @@ class employeePage {
                     success: function (response) {
                         // Load lại dữ liệu:
                         me.loadDataFilter();
-                        me.initEventBonus();
-                        // debugger
+                        me.initEventRenderElement();
+
                         // Ẩn popup:
                         $('#t-overlay').fadeOut(300);
                     },
                     error: function(reject) {
-                        // alert('Có lỗi xảy ra!');
                         // Hiển thị employee code bị trùng:
                         $('#t-dialog-check-code #t-code-warning').text(`<${employee['EmployeeCode']}>`);
                         // Hiện lên thông báo trùng mã nhân viên:
@@ -340,7 +293,6 @@ class employeePage {
                 });
             }
             else {
-                // debugger
                 $.ajax({
                     type: "PUT",
                     url: `http://amis.manhnv.net/api/v1/Employees/${me.idSelected}`,
@@ -351,13 +303,11 @@ class employeePage {
                     success: function (response) {
                         // Load lại dữ liệu
                         me.loadDataFilter()
-                        me.initEventBonus();
-                        // debugger
+                        me.initEventRenderElement();
                         // Ẩn popup
                         $('#t-overlay').fadeOut(300);
                     },
                     error: function(reject) {
-                        // alert('Có lỗi xảy ra!');
                         // Hiển thị employee code bị trùng:
                         $('#t-dialog-check-code #t-code-warning').text(`<${employee['EmployeeCode']}>`);
                         // Hiện lên thông báo trùng mã nhân viên:
@@ -365,8 +315,6 @@ class employeePage {
                     }
                 });
             }
-
-            // me.initEventBonus();
         }
        
     }
@@ -377,19 +325,10 @@ class employeePage {
      * Version: 1
      */
     changeData(sender) {
-
-        // // Reset tất cả các input
-        // let inputs = $('#t-overlay .t-popup-content input');
-        // for (const input of inputs) {
-        //     $(input).val(unset);    // Gán về giá trị value mặc định ban đầu
-        // }
-
         let me = this;
 
         // Lấy ra employeeId (khóa chính) của bản ghi hiện tại:
         let currentRow = $(sender.target).parents('.t-row-table');
-        // console.log(currentRow);
-        // debugger
         let employeeId = $(currentRow).data('employeeId');
 
         // Lưu lại trạng thái:
@@ -411,7 +350,6 @@ class employeePage {
                     let value = employee[fieldName];
                     if(value) {
                         $(input).val(value);
-                        // debugger
                     }
                     else {
                         $(input).val(null);
@@ -420,9 +358,10 @@ class employeePage {
 
                 // Hiển thị popup:
                 $('#t-overlay').fadeIn(300);
+                // Auto focus vào mã nhân viên:
+                $('.t-code-info input').focus();
             }
         });
-        // debugger
 
     }
 
@@ -433,7 +372,6 @@ class employeePage {
      */
     delete(sender) {
         let me = this;
-        // debugger
         // Lấy ra id của bản ghi:
         // let employeeId = $(sender.target).parents('.t-row-table').data('employeeId');
         // Gọi đến api xóa bản ghi:
@@ -446,11 +384,8 @@ class employeePage {
                 me.closeDialogWarning();
             }
         });
-
-        me.initEventBonus();
-
+        me.initEventRenderElement();
     }
-
 
     /**
      * Xử lý radio gender input
@@ -463,9 +398,7 @@ class employeePage {
         let parentInput = $(currentInput).parents('.t-select-gender');
         let value = $(currentInput).val();
         parentInput.val(value);
-        // debugger
     }
-
 
     /**
      * Hàm load dữ liệu từ API đã được lọc theo input
@@ -473,7 +406,6 @@ class employeePage {
      * Version: 1
      */
     loadDataFilter(pageNumber) {
-
         let me = this;
         // Clear dữ liệu cũ:
         $('#t-table tbody').empty();
@@ -537,13 +469,10 @@ class employeePage {
                     // Load xong dữ liệu -> ẩn icon loading
                     setTimeout(function() {
                         $('#t-load-overlay').hide();
-                    }, 1000)
- 
+                    }, 1000);
                 }
             }
-
         });
-        
 
         // Thực hiện tính toán dữ liệu hiển thị lên giao diện: (Tổng số bản ghi, thông tin index của bản ghi)
         const totalRecord = data.TotalRecord;   // Tổng số bản ghi
@@ -552,7 +481,6 @@ class employeePage {
 
         // Tính toán việc hiển thị số trang Pagingbar
         // Nếu tổng số trang lớn hơn số button trang hiển thị trên giao diện -> render ra 5 button
-        // Nếu nhỏ hơn số button trang hiển thị trên giao diện -> render ra totalPage button
         $('#t-content-footer .t-list-page').empty();
         if(me.maxPageIndexButton <= totalPage) {
             // Lấy thông tin trang hiện tại:
@@ -561,18 +489,18 @@ class employeePage {
             let totalRange = 0;     // Tổng số dãy button (mỗi dãy có maxPageIndexButton button)
             if( totalPage % me.maxPageIndexButton == 0 ) {
                 totalRange = Number.parseInt(totalPage / me.maxPageIndexButton);
-            }
-            else {
+            } else {
                 totalRange = Number.parseInt(totalPage / me.maxPageIndexButton) + 1;
             }
+
             // Range hiện tại của button: (vị trí hiện tại của button đang nằm ở range nào)
             let currentRange = 1;
             if( me.currentPageIndex % me.maxPageIndexButton == 0 ) {
                 currentRange = Number.parseInt(me.currentPageIndex / me.maxPageIndexButton);
-            }
-            else {
+            } else {
                 currentRange = Number.parseInt(me.currentPageIndex / me.maxPageIndexButton) + 1;
             }
+
             // Xác định button đầu là trang số bao nhiêu:
             let startButton = (currentRange - 1) * me.maxPageIndexButton + 1;
             
@@ -587,18 +515,15 @@ class employeePage {
                 startButton++;
             }
         }
-        else {
-            for(let i = 0 ; i < totalPage ; i++) {
-                let buttonHTML = $(`<div class="t-page-number">${i+1}</div>`);
-                buttonHTML.data('value', i+1);  // Set value cho mỗi button
-                if(me.currentPageIndex == i+1) {
+        else {  // Nếu nhỏ hơn số button trang hiển thị trên giao diện -> render ra totalPage button
+            for(let pageIndex = 1 ; pageIndex <= totalPage ; pageIndex++) {
+                let buttonHTML = $(`<div class="t-page-number">${pageIndex}</div>`);
+                buttonHTML.data('value', pageIndex);  // Set value cho mỗi button
+                if(me.currentPageIndex == pageIndex) {
                     buttonHTML.addClass('t-page-active');
                 }
                 $('#t-content-footer .t-list-page').append(buttonHTML);
             }
         }
-
     }
-
-
 }
