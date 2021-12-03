@@ -144,14 +144,20 @@ class employeePage {
                 me.loadDataFilter(valueCurrentPage - 1);
             }
             else {
-                // Xác định button tiếp theo, thêm class active cho nó:
-                let prevPage = $(currentPage).prev();
-                $(prevPage).addClass('t-page-active');
-        
-                // Lấy ra giá trị của button:
-                let value = $(prevPage).data('value');
-                me.currentPageIndex = value;
-                me.loadDataFilter(value);
+                if(valueCurrentPage == me.totalPage) {
+                    me.currentPageIndex = valueCurrentPage - 1;
+                    me.loadDataFilter(me.currentPageIndex);
+                }
+                else {
+                    // Xác định button tiếp theo, thêm class active cho nó:
+                    let prevPage = $(currentPage).prev();
+                    $(prevPage).addClass('t-page-active');
+            
+                    // Lấy ra giá trị của button:
+                    let value = $(prevPage).data('value');
+                    me.currentPageIndex = value;
+                    me.loadDataFilter(value);
+                }
             }
             me.initEventRenderElement();
         }
@@ -624,31 +630,45 @@ class employeePage {
                 $('#t-content-footer .t-list-page').append(buttonHTML);
             }
             else {
-                // Render các button:
-                for(let i = 0 ; i < me.maxPageIndexButton ; i++) {
-                    // Render ra các button có giá trị nhỏ hơn tổng số trang:
-                    if(startButton < me.totalPage) {
+                if(me.totalPage > 5) {
+                    // Render các button:
+                    for(let i = 0 ; i < me.maxPageIndexButton ; i++) {
+                        // Render ra các button có giá trị nhỏ hơn tổng số trang:
+                        if(startButton < me.totalPage) {
+                            let buttonHTML = $(`<div class="t-page-number">${startButton}</div>`);
+                            buttonHTML.data('value', startButton);  // Set value cho mỗi button
+                            if(me.currentPageIndex == startButton) {
+                                buttonHTML.addClass('t-page-active');
+                            }
+                            $('#t-content-footer .t-list-page').append(buttonHTML);
+
+                            // Nếu giá trị của button chia hết cho 3 thì sau nó sẽ là dấu ba chấm và kết thúc render của một range (break):
+                            if(startButton % 3 == 0 ) {
+                                buttonHTML = $(`<div class="t-page-number">...</div>`);
+                                $('#t-content-footer .t-list-page').append(buttonHTML);
+                                break;
+                            }
+                        }
+                        startButton++;
+                    }
+
+                    // Sau khi render xong các button nhỏ hơn tổng số trang thì append trang cuối cùng vào cuối dãy:
+                    let buttonHTML = $(`<div class="t-page-number">${totalPage}</div>`);
+                    buttonHTML.data('value', totalPage);  // Set value cho mỗi button
+                    $('#t-content-footer .t-list-page').append(buttonHTML);
+                }
+                else {
+                    // Render các button:
+                    for(let i = 0 ; i < me.maxPageIndexButton ; i++) {
                         let buttonHTML = $(`<div class="t-page-number">${startButton}</div>`);
                         buttonHTML.data('value', startButton);  // Set value cho mỗi button
                         if(me.currentPageIndex == startButton) {
                             buttonHTML.addClass('t-page-active');
                         }
                         $('#t-content-footer .t-list-page').append(buttonHTML);
-
-                        // Nếu giá trị của button chia hết cho 3 thì sau nó sẽ là dấu ba chấm và kết thúc render của một range (break):
-                        if(startButton % 3 == 0 ) {
-                            buttonHTML = $(`<div class="t-page-number">...</div>`);
-                            $('#t-content-footer .t-list-page').append(buttonHTML);
-                            break;
-                        }
+                        startButton++;
                     }
-                    startButton++;
                 }
-
-                // Sau khi render xong các button nhỏ hơn tổng số trang thì append trang cuối cùng vào cuối dãy:
-                let buttonHTML = $(`<div class="t-page-number">${totalPage}</div>`);
-                buttonHTML.data('value', totalPage);  // Set value cho mỗi button
-                $('#t-content-footer .t-list-page').append(buttonHTML);
             }
 
         }
