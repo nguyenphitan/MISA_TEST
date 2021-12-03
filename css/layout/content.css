@@ -88,10 +88,21 @@
     /* position: relative; */
 }
 
-#t-table thead{
-    /* position: fixed; */
-
+#t-table tbody {
+    /* display: contents; */
 }
+
+#t-table thead .t-row-table{
+    /* position: fixed;
+    z-index: 2; */
+}
+
+#t-table thead th {
+    /* height: 48px; */
+}
+
+
+/*  */
 
 
 #t-table-content {

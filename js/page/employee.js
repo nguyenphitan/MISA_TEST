@@ -430,7 +430,8 @@ class employeePage {
             type: "GET",
             url: `http://amis.manhnv.net/api/v1/Employees/${employeeId}`,
             async: false,
-            success: function (employee) {
+            success: function (response) {
+                let employee = response;
                 // Bind dữ liệu vào form:
                 // Lấy toàn bộ các thẻ input info:
                 let inputs = $('#t-popup .t-popup-content .t-input-info[fieldName]');
