@@ -11,11 +11,11 @@ class CommnonJS {
 
 
     /**
-     * Format date: ngày/tháng/năm
+     * Format date: ngày/tháng/năm (GET)
      * Author: NPTAN (29/11/2021)
      * Version: 1
      */
-     static formatDateDDMMYYYY(date) {
+    static formatDateDDMMYYYY(date) {
         if(date) {
             const newDate = new Date(date);
             let day = newDate.getDate();
@@ -26,9 +26,26 @@ class CommnonJS {
             month = (month < 10 ?`0${month}` : month);
             return `${day}/${month}/${year}`;
         }
-        else {
-            return "";
+        return "";
+    }
+
+    /**
+     * Format date: ngày/tháng/năm (PUT)
+     * Author: NPTAN (03/12/2021)
+     * Version: 1
+     */
+    static formatDateYYYYMMDD(date) {
+        if(date) {
+            const newDate = new Date(date);
+            let day = newDate.getDate();
+            let month = newDate.getMonth() + 1;
+            let year = newDate.getFullYear();
+
+            day = (day < 10 ?`0${day}` : day);
+            month = (month < 10 ?`0${month}` : month);
+            return `${year}-${month}-${day}`;
         }
+        return "";
     }
 
 

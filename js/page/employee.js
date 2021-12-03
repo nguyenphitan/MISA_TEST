@@ -33,65 +33,68 @@ class employeePage {
         // Reload data table:
         $('#t-top-content .t-load-btn').click(this.reloadTableData.bind(this));
 
-        // Mở popup thêm mới nhân viên:
-        $('#t-content .t-btn-add').click(this.openPopup.bind(this));    // Click nút thêm mới nhân viên
-        $('#t-overlay .t-close-icon').click(this.closePopup);
-        $('#t-overlay .t-popup-cancel').click(this.closePopup);
+        /**
+         * Các sự kiện Thêm/Sửa/Xóa:
+         */
+            // Mở popup điền thông tin nhân viên:
+            $('#t-content .t-btn-add').click(this.openPopup.bind(this));    // Click nút thêm mới nhân viên
+            // Đóng popup điền thông tin nhân viên:
+            $('#t-overlay .t-close-icon').click(this.closePopup);
+            $('#t-overlay .t-popup-cancel').click(this.closePopup);
+            // Click chọn giới tính:
+            $('.t-select-gender input').on('click', this.handleRadioGender);
 
-        // Click vào nút cất:
-        $('#t-overlay .t-save-only').click(this.addEmployee.bind(this));
-        // Click nút cất và thêm:
-        $('#t-overlay .t-save-and-add').click(this.addEmployee.bind(this));
+            // Click vào nút cất:
+            $('#t-overlay .t-save-only').click(this.addEmployee.bind(this));
+            // Click nút cất và thêm:
+            $('#t-overlay .t-save-and-add').click(this.addEmployee.bind(this));
+
+            // Click sửa thông tin nhân viên:
+            $('#t-content').on('click', '.t-function-name', this.changeData.bind(this));
+
+            // Sự kiện click mở hộp chức năng:
+            $('#t-table-content').on('click', '.t-function-extend', this.openFunctionBox);
+            
+            // Click vào nút xóa bản ghi:
+            $('#t-table-content').on('click', '.t-function-remove', this.openDialogWarningRemove.bind(this));
+            $('#t-dialog .t-dialog-cancel').click(this.closeDialogWarning);
+            $('#t-dialog .t-dialog-agree').click(this.delete.bind(this));
+
+        /**
+         * Các sự kiện liên quan đến Tìm Kiếm (theo họ và tên):
+         */
+            // Sự kiện blur của thẻ input:
+            $('#t-input-text').on('blur', this.searchEmployee.bind(this));
         
-        // Click sửa thông tin nhân viên:
-        $('#t-content .t-employee-function .t-function-name').click(this.changeData.bind(this));
-
-        // Sự kiện click mở hộp chức năng:
-        $('#t-table-content .t-function-extend').click(this.openFunctionBox);
+            // Nhấn icon tìm kiếm:
+            $('.t-input-filter .t-icon-search').click(this.searchEmployee.bind(this));
         
-        // Click vào nút xóa bản ghi:
-        $('#t-table-content .t-function-remove').click(this.openDialogWarningRemove.bind(this));
-        $('#t-dialog .t-dialog-cancel').click(this.closeDialogWarning);
-        $('#t-dialog .t-dialog-agree').click(this.delete.bind(this));
-
-        // Click chọn giới tính:
-        $('.t-select-gender input').on('click', this.handleRadioGender);
-
-        // Click ẩn thông báo trùng mã nhân viên:
-        $('#t-dialog-check-code .t-btn-agree-check').click(this.closeWarningCode);
-
-        // Tìm kiếm nhân viên theo họ và tên:
-        // Nhập từ khóa muốn tìm kiếm:
-        $('#t-input-text').on('blur', this.searchEmployee.bind(this));
-
-        // Nhấn icon tìm kiếm:
-        $('.t-input-filter .t-icon-search').click(this.searchEmployee.bind(this));
-
-        // Focus vào input tìm kiếm và nhấn enter để tìm kiếm:
-        $('.t-input-filter #t-input-text').keyup(this.enterSearchText.bind(this));
-
-        // Click sửa thông tin nhân viên:
-        $('#t-content').on('click', '.t-function-name', this.changeData.bind(this));
-
-        // Sự kiện click mở hộp chức năng:
-        $('#t-table-content').on('click', '.t-function-extend', this.openFunctionBox);
-
-        // Click vào nút xóa bản ghi:
-        $('#t-table-content').on('click', '.t-function-remove', this.openDialogWarningRemove.bind(this));
-
-        // Click chuyển trang:
-        // 1. Click chuyển tới trang trước đó:
-        $('#t-content-footer .t-pre-page').click(this.selectPrevPage.bind(this));
-        // 2. Click chuyển tới trang tiếp theo:
-        $('#t-content-footer .t-next-page').click(this.selectNextPage.bind(this));
+            // Nhấn enter để tìm kiếm:
+            $('.t-input-filter #t-input-text').keyup(this.enterSearchText.bind(this));
         
-        // Hiển thị số bản ghi/trang bằng phím enter:
-        $('#t-content-footer #t-combobox-number').keyup(this.showRecordByEnter.bind(this));
-        // Hiển thị số bản ghi/trang bằng click chuột:
-        $('#t-content-footer #t-combobox-number').on('click' , '.t-combobox-item', this.showRecordByMouse.bind(this));
         
-        // Reset tất cả các trạng thái hover của item chọn số bản ghi/trang:
-        $('#t-content-footer #t-combobox-number').on('mouseenter', '.t-combobox-item', this.resetHoverItem.bind(this));
+        /**
+         * Các sự kiện liên quan đến phân trang:
+         */
+            // 1. Click chuyển tới trang trước đó:
+            $('#t-content-footer .t-pre-page').click(this.selectPrevPage.bind(this));
+            // 2. Click chuyển tới trang tiếp theo:
+            $('#t-content-footer .t-next-page').click(this.selectNextPage.bind(this));
+        
+            // Hiển thị số bản ghi/trang bằng phím enter:
+            $('#t-content-footer #t-combobox-number').keyup(this.showRecordByEnter.bind(this));
+            // Hiển thị số bản ghi/trang bằng click chuột:
+            $('#t-content-footer #t-combobox-number').on('click' , '.t-combobox-item', this.showRecordByMouse.bind(this));
+        
+            // Reset tất cả các trạng thái hover của item chọn số bản ghi/trang:
+            $('#t-content-footer #t-combobox-number').on('mouseenter', '.t-combobox-item', this.resetHoverItem.bind(this));
+        
+        /**
+         * Các sự kiên liên quan đến dialog
+         */
+            // Click ẩn thông báo trùng mã nhân viên:
+            $('#t-dialog-check-code .t-btn-agree-check').click(this.closeWarningCode);
+
     }
 
     // Hiển thị số bản ghi/trang bằng phím enter:
@@ -451,11 +454,18 @@ class employeePage {
                 for (const input of inputs) {
                     let fieldName = $(input).attr('fieldName');
                     let value = employee[fieldName];
-                    // -----
+                    if(fieldName == 'DateOfBirth') {
+                        value = CommnonJS.formatDateYYYYMMDD(value);
+                    }
+                    /* 
+                        Đối với combobox:
+                        Duyệt các thẻ item của combobox được render,
+                        tìm xem item nào có attribute value (DepartmentId đã được lưu vào các item) bằng với DepartmentId của nhân viên được click vào,
+                        rồi gán value và text vào cho combobox (vì api không trả về DepartmentName nên đây chỉ là một trick).
+                    */
                     let check = false;
                     let text = null;
                     if(fieldName == 'DepartmentId') {
-                        // t-combobox-item
                         let items = $('.t-department-info div[tcombobox] .t-combobox-item');
                         for (const item of items) {
                             if( $(item).attr('value') == value ) {
@@ -464,7 +474,6 @@ class employeePage {
                                 break;
                             }
                         }
-
                     }
                     if(check) {
                         $(input).children('.t-combobox-input').val(text);
