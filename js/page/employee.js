@@ -138,8 +138,8 @@ class employeePage {
             // Xóa class active của trang hiện tại:
             $(currentPage).removeClass('t-page-active');
 
-            // Di chuyển tới trang tiếp theo
-            if(valueCurrentPage % me.maxPageIndexButton == 1) {
+            // Di chuyển tới trang trước đó:
+            if(valueCurrentPage % 3 == 1) {     // Kiểm tra chia hết cho 3 vì chỉ hiển thị 3 trang trên mỗi range (với totalPage > 5)
                 me.currentPageIndex = valueCurrentPage - 1;
                 me.loadDataFilter(valueCurrentPage - 1);
             }
@@ -175,7 +175,7 @@ class employeePage {
             $(currentPage).removeClass('t-page-active');
 
             // Di chuyển tới trang tiếp theo
-            if(valueCurrentPage % me.maxPageIndexButton == 0) {
+            if(valueCurrentPage % 3 == 0) {     // Kiểm tra chia hết cho 3 vì chỉ hiển thị 3 trang trên mỗi range (với totalPage > 5)
                 me.currentPageIndex = valueCurrentPage + 1;
                 me.loadDataFilter(valueCurrentPage + 1);
             }
@@ -584,6 +584,13 @@ class employeePage {
         $('#t-total-record-filter').text(totalRecord);
         me.totalPage = totalPage;
 
+        if(totalPage > 5) {     // Nếu tổng số trang lớn hơn 5 thì chỉ hiển tối đa 3 button pageIndex trên mỗi range
+            me.maxPageIndexButton = 3;
+        }
+        else {          // Nếu tổng số trang <= 5 thì hiển thị nhiều nhất là 5 trang trên 1 range duy nhất
+            me.maxPageIndexButton = 5;
+        }
+
         // Tính toán việc hiển thị số trang Pagingbar
         // Nếu tổng số trang lớn hơn số button trang hiển thị trên giao diện -> render ra 5 button
         $('#t-content-footer .t-list-page').empty();
@@ -609,16 +616,41 @@ class employeePage {
             // Xác định button đầu là trang số bao nhiêu:
             let startButton = (currentRange - 1) * me.maxPageIndexButton + 1;
             
-            // Render các button:
-            for(let i = 0 ; i < me.maxPageIndexButton ; i++) {
-                let buttonHTML = $(`<div class="t-page-number">${startButton}</div>`);
-                buttonHTML.data('value', startButton);  // Set value cho mỗi button
-                if(me.currentPageIndex == startButton) {
-                    buttonHTML.addClass('t-page-active');
-                }
+            // Nếu trang hiện tại là trang cuối cùng thì chỉ hiện một mình nó:
+            if(me.currentPageIndex == totalPage) {
+                let buttonHTML = $(`<div class="t-page-number">${totalPage}</div>`);
+                buttonHTML.data('value', totalPage);  // Set value cho mỗi button
+                buttonHTML.addClass('t-page-active');   // Đánh dấu là đang ở trang đó
                 $('#t-content-footer .t-list-page').append(buttonHTML);
-                startButton++;
             }
+            else {
+                // Render các button:
+                for(let i = 0 ; i < me.maxPageIndexButton ; i++) {
+                    // Render ra các button có giá trị nhỏ hơn tổng số trang:
+                    if(startButton < me.totalPage) {
+                        let buttonHTML = $(`<div class="t-page-number">${startButton}</div>`);
+                        buttonHTML.data('value', startButton);  // Set value cho mỗi button
+                        if(me.currentPageIndex == startButton) {
+                            buttonHTML.addClass('t-page-active');
+                        }
+                        $('#t-content-footer .t-list-page').append(buttonHTML);
+
+                        // Nếu giá trị của button chia hết cho 3 thì sau nó sẽ là dấu ba chấm và kết thúc render của một range (break):
+                        if(startButton % 3 == 0 ) {
+                            buttonHTML = $(`<div class="t-page-number">...</div>`);
+                            $('#t-content-footer .t-list-page').append(buttonHTML);
+                            break;
+                        }
+                    }
+                    startButton++;
+                }
+
+                // Sau khi render xong các button nhỏ hơn tổng số trang thì append trang cuối cùng vào cuối dãy:
+                let buttonHTML = $(`<div class="t-page-number">${totalPage}</div>`);
+                buttonHTML.data('value', totalPage);  // Set value cho mỗi button
+                $('#t-content-footer .t-list-page').append(buttonHTML);
+            }
+
         }
         else {  // Nếu nhỏ hơn số button trang hiển thị trên giao diện -> render ra totalPage button
             for(let pageIndex = 1 ; pageIndex <= totalPage ; pageIndex++) {
