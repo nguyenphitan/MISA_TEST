@@ -9,10 +9,13 @@ class employeePage {
     currentPageIndex = 1;
     maxPageIndexButton = 5;
     totalPage = 0;
+    saveStatus = 0; // trang thái cất dữ liệu: 0 - Cất; 1 - Cất và thêm;
     constructor() {
         this.maxPageIndexButton = 5;
         this.currentPageIndex = 1;
         this.totalPage = 0;
+        this.saveStatus = 0;
+
         // Load dữ liệu:
         this.loadDataFilter();
         
@@ -34,9 +37,10 @@ class employeePage {
         $('#t-content .t-btn-add').click(this.openPopup.bind(this));    // Click nút thêm mới nhân viên
         $('#t-overlay .t-close-icon').click(this.closePopup);
         $('#t-overlay .t-popup-cancel').click(this.closePopup);
-        $('#t-overlay .t-save-only').click(this.closePopup);
 
-        // Click nút cất dữ liệu của nhân viên:
+        // Click vào nút cất:
+        $('#t-overlay .t-save-only').click(this.addEmployee.bind(this));
+        // Click nút cất và thêm:
         $('#t-overlay .t-save-and-add').click(this.addEmployee.bind(this));
         
         // Click sửa thông tin nhân viên:
@@ -312,12 +316,19 @@ class employeePage {
      * Version: 1
      */
     addEmployee(sender) {
+        let me = this;
+        let textArray = $(sender.target).attr('value').split(' ');
+        if(textArray.length > 1) {
+            me.saveStatus = 1;
+        }
+        else {
+            me.saveStatus = 0;
+        }
 
         // Kiểm tra các trường bắt buộc đã được nhập hay chưa:
         let check = InputElement.checkInput();
 
         if(check) {
-            let me = this;
             let employee = {};
             // Lấy ra tất cả các input trong popup:
             let inputs = $('#t-popup .t-popup-content .t-input-info');
@@ -356,9 +367,15 @@ class employeePage {
                         // Load lại dữ liệu:
                         me.loadDataFilter();
                         me.initEventRenderElement();
-
-                        // Ẩn popup:
-                        $('#t-overlay').fadeOut(300);
+                        
+                        if(me.saveStatus == 1) {
+                            // Cất dữ liệu và giữ nguyên popup:
+                            me.openPopup();
+                        }
+                        else {
+                            // Ẩn popup:
+                            $('#t-overlay').fadeOut(300);
+                        }
                     },
                     error: function(reject) {
                         // Lấy ra message nhận được:
@@ -390,8 +407,15 @@ class employeePage {
                         // Load lại dữ liệu
                         me.loadDataFilter()
                         me.initEventRenderElement();
-                        // Ẩn popup
-                        $('#t-overlay').fadeOut(300);
+                        
+                        if(me.saveStatus == 1) {
+                            // Cất dữ liệu và giữ nguyên popup:
+                            me.openPopup();
+                        }
+                        else {
+                            // Ẩn popup:
+                            $('#t-overlay').fadeOut(300);
+                        }
                     },
                     error: function(reject) {
                         // Lấy ra message nhận được:
