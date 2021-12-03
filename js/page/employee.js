@@ -8,9 +8,11 @@ class employeePage {
     nameSelected = null;
     currentPageIndex = 1;
     maxPageIndexButton = 5;
+    totalPage = 0;
     constructor() {
         this.maxPageIndexButton = 5;
         this.currentPageIndex = 1;
+        this.totalPage = 0;
         // Load dữ liệu:
         this.loadDataFilter();
         
@@ -40,7 +42,7 @@ class employeePage {
         // Click sửa thông tin nhân viên:
         $('#t-content .t-employee-function .t-function-name').on('click', this.changeData.bind(this));
 
-        // Sự kiện click vào mũi tên trên hộp chức năng:
+        // Sự kiện click mở hộp chức năng:
         $('#t-table-content .t-function-extend').click(this.openFunctionBox);
         
         // Click vào nút xóa bản ghi:
@@ -85,7 +87,7 @@ class employeePage {
         // Click sửa thông tin nhân viên:
         $('#t-content .t-employee-function .t-function-name').on('click', this.changeData.bind(this));
 
-        // Sự kiện click vào nút sửa trên bản ghi (Hộp chức năng):
+        // Sự kiện click mở hộp chức năng:
         $('#t-table-content .t-function-extend').click(this.openFunctionBox);
 
         // Click vào nút xóa bản ghi:
@@ -127,17 +129,35 @@ class employeePage {
     selectPrevPage(sender) {
         let me = this;
         // Chuyển focus sang button số của trang tương ứng:
-        // Xác định button của trang hiện tại, xóa class avtive của nó:
+        // Xác định button của trang hiện tại:
         let currentPage = $(sender.target).siblings('.t-list-page').children().filter('.t-page-active');
-        $(currentPage).removeClass('t-page-active');
-        // Xác định button tiếp theo, thêm class active cho nó:
-        let prevPage = $(currentPage).prev();
-        $(prevPage).addClass('t-page-active');
+        // Lấy ra value của button hiện tại:
+        let valueCurrentPage = $(currentPage).data('value');
 
-        // Lấy ra giá trị của button:
-        let value = $(prevPage).data('value');
-        me.currentPageIndex = value;
-        me.loadDataFilter(value);
+        // Kiểm tra xem trang có tồn tại hay không:
+        if(valueCurrentPage > 1) {
+            // Xóa class active của trang hiện tại:
+            $(currentPage).removeClass('t-page-active');
+
+            // Di chuyển tới trang tiếp theo
+            if(valueCurrentPage % me.maxPageIndexButton == 1) {
+                me.currentPageIndex = valueCurrentPage - 1;
+                me.loadDataFilter(valueCurrentPage - 1);
+            }
+            else {
+                // Xác định button tiếp theo, thêm class active cho nó:
+                let prevPage = $(currentPage).prev();
+                $(prevPage).addClass('t-page-active');
+        
+                // Lấy ra giá trị của button:
+                let value = $(prevPage).data('value');
+                me.currentPageIndex = value;
+                me.loadDataFilter(value);
+            }
+        }
+        else {
+            alert('Trang không tồn tại!');
+        }
     }
 
     // Chuyển tới trang tiếp theo:
@@ -146,15 +166,33 @@ class employeePage {
         // Chuyển focus sang button số của trang tương ứng:
         // Xác định button của trang hiện tại, xóa class avtive của nó:
         let currentPage = $(sender.target).siblings('.t-list-page').children().filter('.t-page-active');
-        $(currentPage).removeClass('t-page-active');
-        // Xác định button tiếp theo, thêm class active cho nó:
-        let nextPage = $(currentPage).next();
-        $(nextPage).addClass('t-page-active');
+        // Lấy ra value của button hiện tại:
+        let valueCurrentPage = $(currentPage).data('value');
 
-        // Lấy ra giá trị của button:
-        let value = $(nextPage).data('value');
-        me.currentPageIndex = value;
-        me.loadDataFilter(value);
+        // Kiểm tra xem trang có tồn tại hay không:
+        if(valueCurrentPage < me.totalPage) {
+            // Xóa class active của trang hiện tại:
+            $(currentPage).removeClass('t-page-active');
+
+            // Di chuyển tới trang tiếp theo
+            if(valueCurrentPage % me.maxPageIndexButton == 0) {
+                me.currentPageIndex = valueCurrentPage + 1;
+                me.loadDataFilter(valueCurrentPage + 1);
+            }
+            else {
+                // Xác định button tiếp theo, thêm class active cho nó:
+                let nextPage = $(currentPage).next();
+                $(nextPage).addClass('t-page-active');
+    
+                // Lấy ra giá trị của button:
+                let value = $(nextPage).data('value');
+                me.currentPageIndex = value;
+                me.loadDataFilter(value);
+            }
+        }
+        else {
+            alert('Trang không tồn tại!');
+        }
     }
 
     // Tìm kiếm theo họ và tên:
@@ -178,12 +216,6 @@ class employeePage {
             this.loadDataFilter(me.currentPageIndex);
             this.initEventRenderElement();
         }
-    }
-
-    // Mở/Đóng hộp chức năng:
-    openFunctionBox(e) {
-        // Mở hộp chức năng:
-        $(e.target).children().fadeToggle(300);
     }
 
     // Mở/Đóng popup thêm mới nhân viên:
@@ -221,8 +253,19 @@ class employeePage {
         $('#t-overlay').fadeOut(300);
     }
 
+    // Mở/Đóng hộp chức năng:
+    openFunctionBox(e) {
+        // Mở hộp chức năng:
+        $(e.target).toggleClass('t-function-extend-click');
+        $(e.target).children().fadeToggle(300);
+    }
+
     // Mở/Đóng dialog warning:
     openDialogWarning(sender) {
+        sender.stopPropagation();
+        let parentItem = $(sender.target).parents('.t-function-extend');
+        $(parentItem).removeClass('t-function-extend-click');
+        $(sender.target).removeClass('t-function-extend-click');
         $('#t-dialog').fadeIn(300);
 
         // Lấy ra id và họ và tên của bản ghi:
@@ -516,6 +559,7 @@ class employeePage {
         const totalRecord = data.TotalRecord;   // Tổng số bản ghi
         const totalPage = data.TotalPage;   // Tổng số trang
         $('#t-total-record-filter').text(totalRecord);
+        me.totalPage = totalPage;
 
         // Tính toán việc hiển thị số trang Pagingbar
         // Nếu tổng số trang lớn hơn số button trang hiển thị trên giao diện -> render ra 5 button

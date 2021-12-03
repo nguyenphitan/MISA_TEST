@@ -198,12 +198,16 @@
 }
 
 .t-function-extend {
-    background: url('../../content/img/Sprites.64af8f61.svg') no-repeat -896px -359px;
+    background: url('../../content/img/Sprites.64af8f61.svg') no-repeat -892px -360px;
     width: 16px;
     height: 16px;
-    padding: 4px;
+    padding: 4px 12px;
     cursor: pointer;
     position: relative;
+}
+
+.t-function-extend-click {
+    border: 1px solid #0075c0;
 }
 
 .t-function-box {
