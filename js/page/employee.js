@@ -70,6 +70,15 @@ class employeePage {
         // Focus vào input tìm kiếm và nhấn enter để tìm kiếm:
         $('.t-input-filter #t-input-text').keyup(this.enterSearchText.bind(this));
 
+        // Click sửa thông tin nhân viên:
+        $('#t-content').on('click', '.t-function-name', this.changeData.bind(this));
+
+        // Sự kiện click mở hộp chức năng:
+        $('#t-table-content').on('click', '.t-function-extend', this.openFunctionBox);
+
+        // Click vào nút xóa bản ghi:
+        $('#t-table-content').on('click', '.t-function-remove', this.openDialogWarningRemove.bind(this));
+
         // Click chuyển trang:
         // 1. Click chuyển tới trang trước đó:
         $('#t-content-footer .t-pre-page').click(this.selectPrevPage.bind(this));
@@ -79,26 +88,10 @@ class employeePage {
         // Hiển thị số bản ghi/trang bằng phím enter:
         $('#t-content-footer #t-combobox-number').keyup(this.showRecordByEnter.bind(this));
         // Hiển thị số bản ghi/trang bằng click chuột:
-        $('#t-content-footer #t-combobox-number .t-combobox-data .t-combobox-item').click(this.showRecordByMouse.bind(this));
-    }
-
-    /**
-     * Khởi tạo sự kiện cho các phần tử được render sau:
-     * Author: NPTAN (01/12/2021)
-     * Version: 1
-     */
-    initEventRenderElement() {
-        // Click sửa thông tin nhân viên:
-        $('#t-content .t-employee-function .t-function-name').click(this.changeData.bind(this));
-
-        // Sự kiện click mở hộp chức năng:
-        $('#t-table-content .t-function-extend').click(this.openFunctionBox);
-
-        // Click vào nút xóa bản ghi:
-        $('#t-table-content .t-function-remove').click(this.openDialogWarningRemove.bind(this));
+        $('#t-content-footer #t-combobox-number').on('click' , '.t-combobox-item', this.showRecordByMouse.bind(this));
         
         // Reset tất cả các trạng thái hover của item chọn số bản ghi/trang:
-        $('#t-content-footer #t-combobox-number .t-combobox-data .t-combobox-item').hover(this.resetHoverItem.bind(this));
+        $('#t-content-footer #t-combobox-number').on('mouseenter', '.t-combobox-item', this.resetHoverItem.bind(this));
     }
 
     // Hiển thị số bản ghi/trang bằng phím enter:
@@ -107,7 +100,6 @@ class employeePage {
             let me = this;
             me.currentPageIndex = 1;
             me.loadDataFilter(me.currentPageIndex);
-            me.initEventRenderElement();
         }
     }
 
@@ -117,7 +109,6 @@ class employeePage {
         let me = this;
         me.currentPageIndex = 1;
         me.loadDataFilter(me.currentPageIndex);
-        me.initEventRenderElement();
     }
 
     // Reset hover của các item chọn số bản ghi/trang:
@@ -163,7 +154,6 @@ class employeePage {
                     me.loadDataFilter(value);
                 }
             }
-            me.initEventRenderElement();
         }
         else {
             alert('Trang không tồn tại!');
@@ -199,7 +189,6 @@ class employeePage {
                 me.currentPageIndex = value;
                 me.loadDataFilter(value);
             }
-            me.initEventRenderElement();
         }
         else {
             alert('Trang không tồn tại!');
@@ -214,7 +203,6 @@ class employeePage {
             me.currentPageIndex = 1;
             this.currentPageIndex = 1;  // Sau mỗi lần tìm kiếm, set lại trang hiện tại là trang 1
             this.loadDataFilter(me.currentPageIndex);
-            this.initEventRenderElement();
         }
     }
 
@@ -225,7 +213,6 @@ class employeePage {
             me.currentPageIndex = 1;
             this.currentPageIndex = 1;  // Sau mỗi lần tìm kiếm, set lại trang hiện tại là trang 1
             this.loadDataFilter(me.currentPageIndex);
-            this.initEventRenderElement();
         }
     }
 
@@ -302,7 +289,6 @@ class employeePage {
         let me = this;
         me.currentPageIndex = 1;
         me.loadDataFilter(me.currentPageIndex);
-        me.initEventRenderElement();
     }
 
     // Click ẩn thông báo trùng mã nhân viên:
@@ -366,8 +352,6 @@ class employeePage {
                     success: function (response) {
                         // Load lại dữ liệu:
                         me.loadDataFilter();
-                        me.initEventRenderElement();
-                        
                         if(me.saveStatus == 1) {
                             // Cất dữ liệu và giữ nguyên popup:
                             me.openPopup();
@@ -405,9 +389,7 @@ class employeePage {
                     contentType: "application/json",
                     success: function (response) {
                         // Load lại dữ liệu
-                        me.loadDataFilter()
-                        me.initEventRenderElement();
-                        
+                        me.loadDataFilter();
                         if(me.saveStatus == 1) {
                             // Cất dữ liệu và giữ nguyên popup:
                             me.openPopup();
@@ -469,11 +451,32 @@ class employeePage {
                 for (const input of inputs) {
                     let fieldName = $(input).attr('fieldName');
                     let value = employee[fieldName];
-                    if(value) {
-                        $(input).val(value);
+                    // -----
+                    let check = false;
+                    let text = null;
+                    if(fieldName == 'DepartmentId') {
+                        // t-combobox-item
+                        let items = $('.t-department-info div[tcombobox] .t-combobox-item');
+                        for (const item of items) {
+                            if( $(item).attr('value') == value ) {
+                                text = $(item).text();
+                                check = true;
+                                break;
+                            }
+                        }
+
+                    }
+                    if(check) {
+                        $(input).children('.t-combobox-input').val(text);
+                        $(input).attr('value', value);
                     }
                     else {
-                        $(input).val(null);
+                        if(value) {
+                            $(input).val(value);
+                        }
+                        else {
+                            $(input).val(null);
+                        }
                     }
                 }
 
@@ -505,7 +508,6 @@ class employeePage {
                 me.closeDialogWarning();
             }
         });
-        me.initEventRenderElement();
     }
 
     /**
