@@ -40,13 +40,13 @@ class employeePage {
         $('#t-overlay .t-save-and-add').click(this.addEmployee.bind(this));
         
         // Click sửa thông tin nhân viên:
-        $('#t-content .t-employee-function .t-function-name').on('click', this.changeData.bind(this));
+        $('#t-content .t-employee-function .t-function-name').click(this.changeData.bind(this));
 
         // Sự kiện click mở hộp chức năng:
         $('#t-table-content .t-function-extend').click(this.openFunctionBox);
         
         // Click vào nút xóa bản ghi:
-        $('#t-table-content .t-function-remove').on('click', this.openDialogWarning.bind(this));
+        $('#t-table-content .t-function-remove').click(this.openDialogWarningRemove.bind(this));
         $('#t-dialog .t-dialog-cancel').click(this.closeDialogWarning);
         $('#t-dialog .t-dialog-agree').click(this.delete.bind(this));
 
@@ -73,8 +73,8 @@ class employeePage {
         $('#t-content-footer .t-next-page').click(this.selectNextPage.bind(this));
         
         // Hiển thị số bản ghi/trang bằng phím enter:
-        $('#t-content-footer #t-combobox-number').keyup(this.showRecord.bind(this));
-        // // Hiển thị số bản ghi/trang bằng click chuột:
+        $('#t-content-footer #t-combobox-number').keyup(this.showRecordByEnter.bind(this));
+        // Hiển thị số bản ghi/trang bằng click chuột:
         $('#t-content-footer #t-combobox-number .t-combobox-data .t-combobox-item').click(this.showRecordByMouse.bind(this));
     }
 
@@ -85,22 +85,20 @@ class employeePage {
      */
     initEventRenderElement() {
         // Click sửa thông tin nhân viên:
-        $('#t-content .t-employee-function .t-function-name').on('click', this.changeData.bind(this));
+        $('#t-content .t-employee-function .t-function-name').click(this.changeData.bind(this));
 
         // Sự kiện click mở hộp chức năng:
         $('#t-table-content .t-function-extend').click(this.openFunctionBox);
 
         // Click vào nút xóa bản ghi:
-        $('#t-table-content .t-function-remove').on('click', this.openDialogWarning.bind(this));
-        $('#t-dialog .t-dialog-cancel').click(this.closeDialogWarning);
-        $('#t-dialog .t-dialog-agree').click(this.delete.bind(this));
+        $('#t-table-content .t-function-remove').click(this.openDialogWarningRemove.bind(this));
         
         // Reset tất cả các trạng thái hover của item chọn số bản ghi/trang:
         $('#t-content-footer #t-combobox-number .t-combobox-data .t-combobox-item').hover(this.resetHoverItem.bind(this));
     }
 
     // Hiển thị số bản ghi/trang bằng phím enter:
-    showRecord(e) {
+    showRecordByEnter(e) {
         if(e.keyCode == 13) {
             let me = this;
             me.currentPageIndex = 1;
@@ -110,7 +108,8 @@ class employeePage {
     }
 
     // Hiển thị số bản ghi/trang bằng click chuột:
-    showRecordByMouse() {
+    showRecordByMouse(e) {
+        e.stopPropagation();
         let me = this;
         me.currentPageIndex = 1;
         me.loadDataFilter(me.currentPageIndex);
@@ -154,6 +153,7 @@ class employeePage {
                 me.currentPageIndex = value;
                 me.loadDataFilter(value);
             }
+            me.initEventRenderElement();
         }
         else {
             alert('Trang không tồn tại!');
@@ -189,6 +189,7 @@ class employeePage {
                 me.currentPageIndex = value;
                 me.loadDataFilter(value);
             }
+            me.initEventRenderElement();
         }
         else {
             alert('Trang không tồn tại!');
@@ -261,7 +262,7 @@ class employeePage {
     }
 
     // Mở/Đóng dialog warning:
-    openDialogWarning(sender) {
+    openDialogWarningRemove(sender) {
         sender.stopPropagation();
         let parentItem = $(sender.target).parents('.t-function-extend');
         $(parentItem).removeClass('t-function-extend-click');
@@ -289,7 +290,8 @@ class employeePage {
     // Click btn reload dữ liệu của table:
     reloadTableData(sender) {
         let me = this;
-        this.loadDataFilter();
+        me.currentPageIndex = 1;
+        me.loadDataFilter(me.currentPageIndex);
         me.initEventRenderElement();
     }
 
@@ -353,8 +355,18 @@ class employeePage {
                         $('#t-overlay').fadeOut(300);
                     },
                     error: function(reject) {
-                        // Hiển thị employee code bị trùng:
-                        $('#t-dialog-check-code #t-code-warning').text(`<${employee['EmployeeCode']}>`);
+                        // Lấy ra message nhận được:
+                        let text = reject.responseJSON.devMsg;
+                        // Kiểm tra trùng mã hay dữ liệu không hợp lệ nào khác và hiện ra dialog warning tương ứng:
+                        if(text.split(' ').includes("Mã")) {
+                            // Hiển thị employee code bị trùng:
+                            $('#t-dialog-check-code #t-code-warning').text(`<${employee['EmployeeCode']}>`);
+                        }
+                        else {
+                            $('#t-dialog-check-code .t-warning-title').empty();
+                            $('#t-dialog-check-code .t-warning-title').text(text);
+                        }
+                        
                         // Hiện lên thông báo trùng mã nhân viên:
                         $('#t-dialog-check-code').fadeIn(200);
                     }
@@ -376,8 +388,18 @@ class employeePage {
                         $('#t-overlay').fadeOut(300);
                     },
                     error: function(reject) {
-                        // Hiển thị employee code bị trùng:
-                        $('#t-dialog-check-code #t-code-warning').text(`<${employee['EmployeeCode']}>`);
+                        // Lấy ra message nhận được:
+                        let text = reject.responseJSON.devMsg;
+                        // Kiểm tra trùng mã hay dữ liệu không hợp lệ nào khác và hiện ra dialog warning tương ứng:
+                        if(text.split(' ').includes("key")) {
+                            // Hiển thị employee code bị trùng:
+                            $('#t-dialog-check-code #t-code-warning').text(`<${employee['EmployeeCode']}>`);
+                        }
+                        else {
+                            $('#t-dialog-check-code .t-warning-title').empty();
+                            $('#t-dialog-check-code .t-warning-title').text(text);
+                        }
+                        
                         // Hiện lên thông báo trùng mã nhân viên:
                         $('#t-dialog-check-code').fadeIn(200);
                     }

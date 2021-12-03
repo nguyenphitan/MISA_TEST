@@ -179,7 +179,7 @@ function inputComboboxOnKeyDown() {
                 // 4. Gán value cho combobox
                 let comboboxElement = $(itemHoverred).parents('.tcombobox');
                 // Cách 1: thực hiện lưu value vào attribute của element
-                // comboboxElement.attr("value", value);
+                comboboxElement.attr("value", value);
                 // Cách 2: gán vào data của element
                 comboboxElement.val(value);    
                 // debugger
