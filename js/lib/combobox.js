@@ -2,9 +2,6 @@ $(document).ready(function() {
     new TCombobox;
     // Thực hiện build động các combobox tự dựng:
 
-
-
-
     // Khởi tạo sự kiện cho button của combobox
     $(".tcombobox .t-combobox-button").click(btnComboboxOnclick);
     $(".tcombobox .t-combobox-item").click(itemComboboxOnclick);

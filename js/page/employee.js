@@ -370,7 +370,8 @@ class employeePage {
                         // Kiểm tra trùng mã hay dữ liệu không hợp lệ nào khác và hiện ra dialog warning tương ứng:
                         if(text.split(' ').includes("Mã")) {
                             // Hiển thị employee code bị trùng:
-                            $('#t-dialog-check-code #t-code-warning').text(`<${employee['EmployeeCode']}>`);
+                            $('#t-dialog-check-code .t-warning-title').empty();
+                            $('#t-dialog-check-code .t-warning-title').html(`Mã nhân viên < ${employee['EmployeeCode']} > đã có trong hệ thống, vui lòng kiểm tra lại.`);
                         }
                         else {
                             $('#t-dialog-check-code .t-warning-title').empty();
@@ -408,7 +409,8 @@ class employeePage {
                         // Kiểm tra trùng mã hay dữ liệu không hợp lệ nào khác và hiện ra dialog warning tương ứng:
                         if(text.split(' ').includes("key")) {
                             // Hiển thị employee code bị trùng:
-                            $('#t-dialog-check-code #t-code-warning').text(`<${employee['EmployeeCode']}>`);
+                            $('#t-dialog-check-code .t-warning-title').empty();
+                            $('#t-dialog-check-code .t-warning-title').html(`Mã nhân viên < ${employee['EmployeeCode']} > đã có trong hệ thống, vui lòng kiểm tra lại.`);
                         }
                         else {
                             $('#t-dialog-check-code .t-warning-title').empty();
